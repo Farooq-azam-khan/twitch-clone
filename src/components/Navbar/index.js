@@ -178,9 +178,9 @@ const Navbar = ({ className }) => {
   );
 };
 
-const UserProfileDropdown = ({ username = "alucard_is_dracula" }) => {
+const UserProfileDropdown = ({ username = "my_username_is_this" }) => {
   return (
-    <div className="absolute text-white text-sm leading-none bg-gray-800 rounded-md shadow-xl -mx-40 my-2 p-2">
+    <div className="absolute text-white overflow-auto text-sm leading-none bg-gray-800 rounded-md shadow-xl -mx-40 my-2 p-2">
       <header className="border-b py-2 border-gray-500">
         <div className="flex flex-cols">
           <div className="inline-flex items-center mb-2">
@@ -241,7 +241,7 @@ const UserProfileDropdown = ({ username = "alucard_is_dracula" }) => {
           </div>
         </div>
         <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <div class="inline-flex items-center">
+          <div className="inline-flex items-center">
             <span className="mr-1">
               <MoonOutline className="w-4 h-4" />
             </span>
