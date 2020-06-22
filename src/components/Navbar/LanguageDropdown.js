@@ -16,7 +16,7 @@ const LanguageDropdown = ({ toggleClose }) => {
   const seletedLanguage = "English";
   // TODO: use redux to change selected language
   return (
-    <div className="absolute z-20 flex flex-col right-0 w-40 bg-gray-800 rounded-md shadow-xl h-64 mt-2 text-white text-sm p-0">
+    <div className="absolute z-30 flex flex-col right-0 w-40 bg-gray-800 rounded-md shadow-xl h-64 mt-2 text-white text-sm p-0">
       <button onClick={toggleClose}>
         <header className="flex items-center justify-between border-b pb-1 bg-gray-700">
           <span>

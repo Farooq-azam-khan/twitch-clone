@@ -12,7 +12,7 @@ import { OfflineIcon, ProfileImage } from "../../assets";
 
 const UserProfileDropdown = ({ username = "my_username", handleLanguage }) => {
   return (
-    <div className="absolute z-10 flex flex-col bg-gray-800 right-0 mt-2 text-sm text-white py-2 px-3 w-48 h-64 rounded-lg overflow-auto">
+    <div className="absolute z-30 right-0 mt-3 flex flex-col bg-gray-800  text-sm text-white py-2 px-3 w-48 h-64 rounded-lg shadow-xl overflow-auto">
       <header className="flex flex-col border-b py-2 border-gray-500">
         <div className="inline-flex items-center">
           <div className="mr-2">
@@ -63,9 +63,10 @@ const UserProfileDropdown = ({ username = "my_username", handleLanguage }) => {
           </div>
         </div>
         {/* languages */}
-        <div
+        <button
+          value="language"
           onClick={handleLanguage}
-          className="hover:bg-gray-700 rounded-lg px-2 py-2"
+          className="w-full block hover:bg-gray-700 rounded-lg  px-2 py-2"
         >
           <div className="flex items-center justify-between">
             <span className="flex-grow inline-flex items-center">
@@ -78,7 +79,7 @@ const UserProfileDropdown = ({ username = "my_username", handleLanguage }) => {
               <ChevronRightOutline className="w-4 h-4" />
             </span>
           </div>
-        </div>
+        </button>
         <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
           <div className="inline-flex items-center">
             <span className="mr-1">

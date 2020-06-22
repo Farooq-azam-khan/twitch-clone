@@ -31,6 +31,101 @@ const Navbar = ({ className }) => {
   const [toggleWhispersDropdown, setWhispersDropdown] = useState(false);
   const [toggleLanguageDropdown, setLanguageDropdown] = useState(false);
 
+  const setFalse = list => {
+    list.map(e => e(false));
+  };
+  const handleDropdown = e => {
+    switch (e.target.value) {
+      case "more":
+        setFalse([
+          setProfile,
+          setBitsDropdown,
+          setPrimelootDropdown,
+          setNotificationDropdown,
+          setSearchDropdown,
+          setWhispersDropdown,
+          setLanguageDropdown
+        ]);
+        setMoreDropdown(!toggleMoreDropdown);
+        break;
+      case "search-mobile":
+        setFalse([
+          setProfile,
+          setBitsDropdown,
+          setPrimelootDropdown,
+          setNotificationDropdown,
+          setMoreDropdown,
+          setWhispersDropdown,
+          setLanguageDropdown
+        ]);
+        setSearchDropdown(!toggleSearch);
+        break;
+      case "prime-loot":
+        setFalse([
+          setProfile,
+          setBitsDropdown,
+          setMoreDropdown,
+          setNotificationDropdown,
+          setSearchDropdown,
+          setWhispersDropdown,
+          setLanguageDropdown
+        ]);
+        setPrimelootDropdown(!togglePrimelootDropdown);
+        break;
+      case "notification":
+        setFalse([
+          setProfile,
+          setBitsDropdown,
+          setMoreDropdown,
+          setPrimelootDropdown,
+          setMoreDropdown,
+          setSearchDropdown,
+          setWhispersDropdown,
+          setLanguageDropdown
+        ]);
+        setNotificationDropdown(!toggleNotification);
+        break;
+      case "whisper":
+        setFalse([
+          setProfile,
+          setBitsDropdown,
+          setMoreDropdown,
+          setNotificationDropdown,
+          setSearchDropdown,
+          setPrimelootDropdown,
+          setMoreDropdown,
+          setLanguageDropdown
+        ]);
+        setWhispersDropdown(!toggleWhispersDropdown);
+        break;
+      case "bits":
+        setFalse([
+          setProfile,
+          setMoreDropdown,
+          setMoreDropdown,
+          setNotificationDropdown,
+          setSearchDropdown,
+          setPrimelootDropdown,
+          setWhispersDropdown,
+          setLanguageDropdown
+        ]);
+        setBitsDropdown(!toggleBitsDropdown);
+        break;
+
+      default:
+        setFalse([
+          setMoreDropdown,
+          setPrimelootDropdown,
+          setBitsDropdown,
+          setMoreDropdown,
+          setNotificationDropdown,
+          setSearchDropdown,
+          setWhispersDropdown,
+          setLanguageDropdown
+        ]);
+        setProfile(!toggleProfile);
+    }
+  };
   const handleWhispersDropdown = () => {
     setWhispersDropdown(!toggleWhispersDropdown);
   };
@@ -38,22 +133,6 @@ const Navbar = ({ className }) => {
     console.log("toggle language");
     setLanguageDropdown(!toggleLanguageDropdown);
     setProfile(!toggleProfile);
-  };
-
-  const handleSearchDropdown = () => {
-    setSearchDropdown(!toggleSearch);
-  };
-
-  const handleMoreDropdown = () => {
-    setMoreDropdown(!toggleMoreDropdown);
-  };
-
-  const handleProfileToggle = () => {
-    setProfile(!toggleProfile);
-  };
-
-  const handleBitsClick = () => {
-    setBitsDropdown(!toggleBitsDropdown);
   };
 
   const handlePrimeLoot = () => {
@@ -99,8 +178,9 @@ const Navbar = ({ className }) => {
           </a>
           <span className="relative text-white">
             <button
-              onClick={handleMoreDropdown}
-              className="hover:bg-gray-700 rounded-lg p-1"
+              value="more"
+              onClick={handleDropdown}
+              className="relative z-20 hover:bg-gray-700 rounded-lg p-1"
             >
               <DotsHorizontal className="w-5 h-5 " />
             </button>
@@ -112,7 +192,10 @@ const Navbar = ({ className }) => {
             <input type="text" placeholder="search" />
           </span>
           <span>
-            <button className="bg-gray-700 text-gray-800 rounded-lg">
+            <button
+              value="search-lg"
+              className="bg-gray-700 text-gray-800 rounded-lg"
+            >
               <Search />
             </button>
           </span>
@@ -122,8 +205,9 @@ const Navbar = ({ className }) => {
         <span className="inline-flex items-center">
           <span className="md:hidden text-white mr-1">
             <button
-              onClick={handleSearchDropdown}
-              className="hover:bg-gray-700 rounded-lg p-1"
+              value="search-mobile"
+              onClick={handleDropdown}
+              className="relative z-20 hover:bg-gray-700 rounded-lg p-1"
             >
               <Search className="w-5 h-5" />
             </button>
@@ -132,8 +216,9 @@ const Navbar = ({ className }) => {
           {/* prime loot */}
           <span className="relative text-white mr-1">
             <button
-              onClick={handlePrimeLoot}
-              className="hover:bg-gray-700 rounded-lg p-1"
+              value="prime-loot"
+              onClick={handleDropdown}
+              className="relative z-20 hover:bg-gray-700 rounded-lg p-1"
             >
               <DesktopComputerOutline className="w-5 h-5" />
             </button>
@@ -144,8 +229,9 @@ const Navbar = ({ className }) => {
           {/* notification */}
           <span className="relative text-white mr-1">
             <button
-              onClick={handleNotification}
-              className="hover:bg-gray-700 rounded-lg p-1"
+              value="notification"
+              onClick={handleDropdown}
+              className="relative z-20 hover:bg-gray-700 rounded-lg p-1"
             >
               <BellOutline className="w-5 h-5" />
             </button>
@@ -156,8 +242,9 @@ const Navbar = ({ className }) => {
           </span>
           <span className="relative text-white mr-1">
             <button
-              onClick={handleWhispersDropdown}
-              className="hover:bg-gray-700 rounded-lg p-1"
+              value="whisper"
+              onClick={handleDropdown}
+              className="relative z-20 hover:bg-gray-700 rounded-lg p-1"
             >
               <AnnotationOutline className="w-5 h-5" />
             </button>
@@ -169,14 +256,16 @@ const Navbar = ({ className }) => {
           {/* bits button */}
           <span className="relative mr-2">
             <button
-              onClick={handleBitsClick}
-              className="block text-white hover:bg-gray-700 rounded-lg p-1 md:hidden"
+              value="bits"
+              onClick={handleDropdown}
+              className="block relative z-20 text-white hover:bg-gray-700 rounded-lg p-1 md:hidden"
             >
               <BitsIcon className="w-4 h-4" />
             </button>
             <button
-              onClick={handleBitsClick}
-              className="hidden md:block md:inline-flex md:items-center bg-gray-700 px-2 py-1 text-white hover:bg-gray-600"
+              value="bits"
+              onClick={handleDropdown}
+              className="hidden md:block md:inline-flex md:items-center md:relative md:z-20 bg-gray-700 px-2 py-1 text-white hover:bg-gray-600"
             >
               <BitsIcon className="w-4 h-4" />
               <span className="text-sm">Get Bits</span>
@@ -185,16 +274,14 @@ const Navbar = ({ className }) => {
             {toggleBitsDropdown ? <BitsDropdown /> : null}
           </span>
           <span className="relative">
-            <button className="relative z-20" onClick={handleProfileToggle}>
+            <button
+              value="profile"
+              className="relative z-20"
+              onClick={handleDropdown}
+            >
               <ProfileImage width />
             </button>
-            {toggleProfile || toggleLanguageDropdown ? (
-              <button
-                tabIndex="-1"
-                onClick={() => setProfile(false)}
-                className="fixed z-10 inset-0 w-full h-full cursor-default"
-              />
-            ) : null}
+
             {toggleProfile && !toggleLanguageDropdown ? (
               <UserProfileDropdown handleLanguage={handleLanguage} />
             ) : null}
@@ -204,6 +291,29 @@ const Navbar = ({ className }) => {
           </span>
         </span>
       </div>
+      {toggleProfile ||
+      toggleLanguageDropdown ||
+      toggleMoreDropdown ||
+      toggleBitsDropdown ||
+      togglePrimelootDropdown ||
+      toggleNotification ||
+      toggleSearch ||
+      toggleWhispersDropdown ? (
+        <button
+          tabIndex="-1"
+          onClick={() => {
+            setProfile(false);
+            setLanguageDropdown(false);
+            setMoreDropdown(false);
+            setNotificationDropdown(false);
+            setPrimelootDropdown(false);
+            setSearchDropdown(false);
+            setWhispersDropdown(false);
+            setBitsDropdown(false);
+          }}
+          className="fixed z-10 inset-0 w-full h-full cursor-default"
+        />
+      ) : null}
     </div>
   );
 };
