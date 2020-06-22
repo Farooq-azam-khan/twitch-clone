@@ -12,7 +12,7 @@ import { OfflineIcon, ProfileImage } from "../../assets";
 
 const UserProfileDropdown = ({ username = "my_username", handleLanguage }) => {
   return (
-    <div className="absolute flex flex-col bg-gray-800 right-0 mt-2 text-sm text-white py-2 px-3 w-48 h-64 rounded-lg overflow-auto">
+    <div className="absolute z-10 flex flex-col bg-gray-800 right-0 mt-2 text-sm text-white py-2 px-3 w-48 h-64 rounded-lg overflow-auto">
       <header className="flex flex-col border-b py-2 border-gray-500">
         <div className="inline-flex items-center">
           <div className="mr-2">

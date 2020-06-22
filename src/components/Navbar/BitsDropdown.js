@@ -2,7 +2,7 @@ import React from "react";
 
 const BitsDropdown = () => {
   return (
-    <div className="absolute flex flex-col px-4 py-5 top-0 w-64 shadow-xl right-0 top-0 mt-10 bg-gray-800 text-white">
+    <div className="absolute z-10 flex flex-col px-4 py-5 top-0 w-64 shadow-xl right-0 top-0 mt-10 bg-gray-800 text-white rounded-lg">
       <div>
         <h2 className="text-md text-center font-bold">
           Join the Party with with Bits

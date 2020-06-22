@@ -184,10 +184,17 @@ const Navbar = ({ className }) => {
 
             {toggleBitsDropdown ? <BitsDropdown /> : null}
           </span>
-          <span className="relative bottom-0 right-0">
-            <button onClick={handleProfileToggle}>
+          <span className="relative">
+            <button className="relative z-20" onClick={handleProfileToggle}>
               <ProfileImage width />
             </button>
+            {toggleProfile || toggleLanguageDropdown ? (
+              <button
+                tabIndex="-1"
+                onClick={() => setProfile(false)}
+                className="fixed z-10 inset-0 w-full h-full cursor-default"
+              />
+            ) : null}
             {toggleProfile && !toggleLanguageDropdown ? (
               <UserProfileDropdown handleLanguage={handleLanguage} />
             ) : null}

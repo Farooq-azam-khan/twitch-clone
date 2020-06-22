@@ -9,7 +9,7 @@ const WhispersDropdown = ({ toggleClose }) => {
     setSettingDropdown(!toggleSettingDropdown);
   };
   return (
-    <div className="absolute flex flex-col right-0 bg-gray-800 border-black w-64 h-64 rounded-lg shadow-xl">
+    <div className="absolute z-10 flex flex-col right-0 bg-gray-800 border-black w-64 h-64 rounded-lg shadow-xl">
       <header className="inline-flex items-center justify-between shadow-xl p-2 border-b border-gray-900">
         <h2 className="text-center flex-grow">Wispers</h2>
         <span className="inline-flex items-center justify-between">
@@ -41,7 +41,7 @@ const WhispersDropdown = ({ toggleClose }) => {
 
 const SettingDropdown = () => {
   return (
-    <div className="absolute flex flex-col z-30 right-0 w-64 bg-gray-900 rounded-lg p-2 shadow-xl">
+    <div className="absolute z-20 flex flex-col right-0 w-64 bg-gray-900 rounded-lg p-2 shadow-xl">
       <a href="#" className="block hover:bg-gray-700 rounded-lg py-1 px-2">
         Enable Do Not Disturb
       </a>

@@ -4,7 +4,7 @@ import { X, CogOutline } from "heroicons-react";
 
 const NotificationDropdown = ({ close }) => {
   return (
-    <div className="absolute z-10 flex flex-col top-0 shadow-xl right-0 mt-10 bg-gray-800 w-64 overflow-auto">
+    <div className="absolute z-30 flex flex-col top-0 shadow-xl right-0 mt-10 bg-gray-800 w-64 overflow-auto">
       <header className="shadow-lg px-2 py-3 inline-flex items-center justify-between">
         <span className="flex-grow">
           <h2 className="text-lg text-center">Notifications</h2>
