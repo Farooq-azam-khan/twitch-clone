@@ -7,19 +7,19 @@ import {
   DesktopComputerOutline,
   Heart,
   DuplicateOutline,
-  Briefcase,
-  MoonOutline,
-  GlobeAltOutline,
-  ChevronRightOutline,
-  CogOutline,
-  LogoutOutline
+  Briefcase
 } from "heroicons-react";
 
+import { TwitchLogo, ProfileImage, BitsIcon, MusicIcon } from "../../assets";
+
+import UserProfileDropdown from "./UserProfileDropdown";
+import LanguageDropdown from "./LanguageDropdown";
 import MoreDropdown from "./MoreDropdown";
 import BitsDropdown from "./BitsDropdown";
 import PrimeLootDropdown from "./PrimeLootDropdown";
 import NotificationDropdown from "./NotificationDropdown";
 import MobileSearchDropdown from "./MobileSearchDropdown";
+import WhispersDropdown from "./WhispersDropdown";
 
 const Navbar = ({ className }) => {
   const [toggleProfile, setProfile] = useState(false);
@@ -27,7 +27,18 @@ const Navbar = ({ className }) => {
   const [toggleBitsDropdown, setBitsDropdown] = useState(false);
   const [togglePrimelootDropdown, setPrimelootDropdown] = useState(false);
   const [toggleNotification, setNotificationDropdown] = useState(false);
-  const [toggleSearch, setSearchDropdown] = useState(true);
+  const [toggleSearch, setSearchDropdown] = useState(false);
+  const [toggleWhispersDropdown, setWhispersDropdown] = useState(true);
+  const [toggleLanguageDropdown, setLanguageDropdown] = useState(false);
+
+  const handleWhispersDropdown = () => {
+    setWhispersDropdown(!toggleWhispersDropdown);
+  };
+  const handleLanguage = () => {
+    console.log("toggle language");
+    setLanguageDropdown(!toggleLanguageDropdown);
+    setProfile(!toggleProfile);
+  };
 
   const handleSearchDropdown = () => {
     setSearchDropdown(!toggleSearch);
@@ -143,10 +154,17 @@ const Navbar = ({ className }) => {
               <NotificationDropdown close={handleNotification} />
             ) : null}
           </span>
-          <span className="text-white mr-1">
-            <button className="hover:bg-gray-700 rounded-lg p-1">
+          <span className="relative text-white mr-1">
+            <button
+              onClick={handleWhispersDropdown}
+              className="hover:bg-gray-700 rounded-lg p-1"
+            >
               <AnnotationOutline className="w-5 h-5" />
             </button>
+
+            {toggleWhispersDropdown ? (
+              <WhispersDropdown toggleClose={handleWhispersDropdown} />
+            ) : null}
           </span>
           {/* bits button */}
           <span className="relative mr-2">
@@ -170,7 +188,12 @@ const Navbar = ({ className }) => {
             <button onClick={handleProfileToggle}>
               <ProfileImage width />
             </button>
-            {toggleProfile ? <UserProfileDropdown /> : null}
+            {toggleProfile && !toggleLanguageDropdown ? (
+              <UserProfileDropdown handleLanguage={handleLanguage} />
+            ) : null}
+            {toggleLanguageDropdown && !toggleProfile ? (
+              <LanguageDropdown toggleClose={handleLanguage} />
+            ) : null}
           </span>
         </span>
       </div>
@@ -178,166 +201,4 @@ const Navbar = ({ className }) => {
   );
 };
 
-const UserProfileDropdown = ({ username = "my_username_is_this" }) => {
-  return (
-    <div className="absolute text-white overflow-auto text-sm leading-none bg-gray-800 rounded-md shadow-xl -mx-40 my-2 p-2">
-      <header className="border-b py-2 border-gray-500">
-        <div className="flex flex-cols">
-          <div className="inline-flex items-center mb-2">
-            <div className="mr-2">
-              <ProfileImage className="w-10 h-10 rounded-full" />
-            </div>
-            <div>
-              {username}
-              <br />
-              <span className="text-gray-400 inline-flex items-center">
-                <OfflineIcon className="w-2 h-2" />
-                <span className="ml-1">Offline</span>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="inline-flex">Online</div>
-      </header>
-      <section className="mt-2 border-b py-1 border-gray-500">
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <button>Channel</button>
-        </div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <button>Video Producer</button>
-        </div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <button>Creator Dashboard</button>
-        </div>
-      </section>
-      <section className="mt-2 border-b py-2 border-gray-500">
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">Friends</div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <button>Subscriptions</button>
-        </div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">Inventory</div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">Wallet</div>
-      </section>
-      <section className="mt-2 border-b py-2 border-gray-500">
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <div className="inline-flex items-center">
-            <span className="mr-1">
-              <CogOutline className="h-4 w-4" />
-            </span>
-            <span>Setting</span>
-          </div>
-        </div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <div className="inline-flex items-center justify-between">
-            <span className="inline-flex items-center">
-              <span className="mr-1">
-                <GlobeAltOutline className="w-4 h-4" />
-              </span>
-              <span>Language</span>
-            </span>
-            <span>
-              <ChevronRightOutline className="w-4 h-4" />
-            </span>
-          </div>
-        </div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <div className="inline-flex items-center">
-            <span className="mr-1">
-              <MoonOutline className="w-4 h-4" />
-            </span>
-            <span>Dark Theme</span>
-          </div>
-        </div>
-      </section>
-      <section className="mt-2 hover:bg-gray-700 rounded-lg px-2 py-2">
-        <div className="inline-flex items-center">
-          <span class="mr-1">
-            <LogoutOutline className="w-4 h-4" />
-          </span>
-          <span>
-            <button>Logout</button>
-          </span>
-        </div>
-      </section>
-    </div>
-  );
-};
-const BitsIcon = ({ className }) => {
-  return (
-    <svg
-      className={className}
-      stroke="none"
-      fill="currentColor"
-      width="100%"
-      height="100%"
-      version="1.1"
-      viewBox="0 0 20 20"
-      x="0px"
-      y="0px"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M3 12l7-10 7 10-7 6-7-6zm2.678-.338L10 5.487l4.322 6.173-.85.728L10 11l-3.473 1.39-.849-.729z"
-      />
-    </svg>
-  );
-};
-// const SearchSection = () => {};
-const TwitchLogo = () => {
-  return (
-    <img
-      className="h-6 w-6"
-      src="https://seeklogo.com/images/T/twitch-logo-4931D91F85-seeklogo.com.png"
-      alt="twitch logo"
-    />
-  );
-};
-
-const OfflineIcon = ({ className }) => {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      strokeWidth="2"
-      stroke="none"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="12" cy="12" r="10" />
-    </svg>
-  );
-};
-
-const MusicIcon = () => {
-  return (
-    <svg
-      stroke="none"
-      fill="currentColor"
-      width="24px"
-      height="24px"
-      version="1.1"
-      viewBox="0 0 20 20"
-      x="0px"
-      y="0px"
-    >
-      <g>
-        <path
-          fillRule="evenodd"
-          d="M18 4.331a2 2 0 00-2.304-1.977l-9 1.385A2 2 0 005 5.716v7.334A2.5 2.5 0 106.95 16H7V9.692l9-1.385v2.743A2.5 2.5 0 1017.95 14H18V4.33zm-2 0L7 5.716v1.953l9-1.385V4.33z"
-          clipRule="evenodd"
-        />
-      </g>
-    </svg>
-  );
-};
-const ProfileImage = ({ className = "w-6 h-6 rounded-full" }) => {
-  return (
-    <img
-      className={className}
-      src="https://static-cdn.jtvnw.net/user-default-pictures-uv/41780b5a-def8-11e9-94d9-784f43822e80-profile_image-70x70.png"
-      alt="profile"
-    />
-  );
-};
 export default Navbar;

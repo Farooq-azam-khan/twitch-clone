@@ -4,29 +4,27 @@ import {
   GlobeAltOutline,
   ChevronRightOutline,
   CogOutline,
-  LogoutOutline
+  LogoutOutline,
+  StarOutline
 } from "heroicons-react";
 
 import { OfflineIcon, ProfileImage } from "../../assets";
 
-const UserProfileDropdown = ({ username = "my_username_is_this" }) => {
+const UserProfileDropdown = ({ username = "my_username", handleLanguage }) => {
   return (
-    <div className="absolute flex flex-col bg-gray-800 right-0 mt-2 text-sm text-white pt-2 px-3 rounded-lg overflow-auto">
-      {/* top-0 mt-2  text-white text-sm leading-none bg-purple-800 shadow-xl -mx-40 my-2 p-2 rounded-md"> */}
-      <header className="border-b py-2 border-gray-500">
-        <div className="flex flex-cols">
-          <div className="inline-flex items-center mb-2">
-            <div className="mr-2">
-              <ProfileImage className="w-10 h-10 rounded-full" />
-            </div>
-            <div>
-              {username}
-              <br />
-              <span className="text-gray-400 inline-flex items-center">
-                <OfflineIcon className="w-2 h-2" />
-                <span className="ml-1">Offline</span>
-              </span>
-            </div>
+    <div className="absolute flex flex-col bg-gray-800 right-0 mt-2 text-sm text-white py-2 px-3 w-48 h-64 rounded-lg overflow-auto">
+      <header className="flex flex-col border-b py-2 border-gray-500">
+        <div className="inline-flex items-center">
+          <div className="mr-2">
+            <ProfileImage className="w-10 h-10 rounded-full" />
+          </div>
+          <div>
+            {username}
+            <br />
+            <span className="text-gray-400 inline-flex items-center">
+              <OfflineIcon className="w-2 h-2" />
+              <span className="ml-1">Offline</span>
+            </span>
           </div>
         </div>
         <div className="inline-flex">Online</div>
@@ -45,7 +43,12 @@ const UserProfileDropdown = ({ username = "my_username_is_this" }) => {
       <section className="mt-2 border-b py-2 border-gray-500">
         <div className="hover:bg-gray-700 rounded-lg px-2 py-2">Friends</div>
         <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <button>Subscriptions</button>
+          <button className="inline-flex items-center">
+            <span className="mr-1">
+              <StarOutline className="w-4 h-4" />
+            </span>
+            <span>Subscriptions</span>
+          </button>
         </div>
         <div className="hover:bg-gray-700 rounded-lg px-2 py-2">Inventory</div>
         <div className="hover:bg-gray-700 rounded-lg px-2 py-2">Wallet</div>
@@ -59,9 +62,13 @@ const UserProfileDropdown = ({ username = "my_username_is_this" }) => {
             <span>Setting</span>
           </div>
         </div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <div className="inline-flex items-center justify-between">
-            <span className="inline-flex items-center">
+        {/* languages */}
+        <div
+          onClick={handleLanguage}
+          className="hover:bg-gray-700 rounded-lg px-2 py-2"
+        >
+          <div className="flex items-center justify-between">
+            <span className="flex-grow inline-flex items-center">
               <span className="mr-1">
                 <GlobeAltOutline className="w-4 h-4" />
               </span>
@@ -83,7 +90,7 @@ const UserProfileDropdown = ({ username = "my_username_is_this" }) => {
       </section>
       <section className="mt-2 hover:bg-gray-700 rounded-lg px-2 py-2">
         <div className="inline-flex items-center">
-          <span class="mr-1">
+          <span className="mr-1">
             <LogoutOutline className="w-4 h-4" />
           </span>
           <span>
