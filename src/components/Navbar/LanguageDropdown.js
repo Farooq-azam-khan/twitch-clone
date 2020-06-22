@@ -20,7 +20,7 @@ const LanguageDropdown = ({ toggleClose }) => {
       <button onClick={toggleClose}>
         <header className="flex items-center justify-between border-b pb-1 bg-gray-700">
           <span>
-            <ChevronLeft classname="w-4 h-4" />
+            <ChevronLeft className="w-4 h-4" />
           </span>
           <span className="flex-grow text-center">Languages</span>
         </header>

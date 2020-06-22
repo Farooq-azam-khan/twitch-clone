@@ -213,6 +213,7 @@ const Navbar = ({ className }) => {
             </button>
             {toggleSearch ? <MobileSearchDropdown /> : null}
           </span>
+
           {/* prime loot */}
           <span className="relative text-white mr-1">
             <button
@@ -221,11 +222,13 @@ const Navbar = ({ className }) => {
               className="relative z-20 hover:bg-gray-700 rounded-lg p-1"
             >
               <DesktopComputerOutline className="w-5 h-5" />
+              {!togglePrimelootDropdown ? <NewNotification amount="1" /> : null}
             </button>
             {togglePrimelootDropdown ? (
               <PrimeLootDropdown close={handlePrimeLoot} />
             ) : null}
           </span>
+
           {/* notification */}
           <span className="relative text-white mr-1">
             <button
@@ -314,6 +317,14 @@ const Navbar = ({ className }) => {
           className="fixed z-10 inset-0 w-full h-full cursor-default"
         />
       ) : null}
+    </div>
+  );
+};
+
+const NewNotification = ({ amount }) => {
+  return (
+    <div className="absolute z-20 -mt-1 flex items-center justify-center text-center shadow-lg h-4 w-4 p-0 bg-red-600 top-0 right-0 rounded-full text-xs leading-none">
+      <span>{amount}</span>
     </div>
   );
 };

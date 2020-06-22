@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState, Fragment } from "react";
 import {
   ChevronLeftOutline,
-  // ChevronRightOutline,
   HeartOutline,
   CameraOutline
 } from "heroicons-react";
 
-const sampleChannelImage =
-  "https://static-cdn.jtvnw.net/jtv_user_pictures/cd921fcd-53fc-4b1d-be23-0787bc36b756-profile_image-70x70.png";
+import { Online } from "../assets";
+import followingChannels from "../assets/followingChannels";
+import popularChannels from "../assets/popularChannels";
+
 const StreamersBar = ({ className }) => {
+  const [toggleShowMore, setShowMore] = useState(true);
+  const handleToggle = e => {
+    if (e.target.value === "showFollowing") {
+      setShowMore(!toggleShowMore);
+    }
+  };
   return (
     <div className={className}>
       <div className="md:flex md:items-center md:justify-between md:m-2">
@@ -18,61 +25,44 @@ const StreamersBar = ({ className }) => {
         <span>
           <button className="hidden md:block hover:bg-blue-800 p-1 rounded-lg">
             <ChevronLeftOutline className="h-4 w-4 " />
-            {/* <ChevronRightOutline className="h-4 w-4" /> */}
           </button>
         </span>
       </div>
-      <ul className="flex flex-col items-center md:items-stretch">
-        <li>
-          <HeartOutline className="block md:hidden w-5 h-5" />
+
+      {/* small screens display all following channels  */}
+      <ul className="md:hidden flex flex-col items-center md:items-stretch">
+        <li className="block md:hidden">
+          <HeartOutline className="w-5 h-5" />
         </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="Just Chatting"
-            imgUrl={sampleChannelImage}
-            isLive
-            views="1M"
-          />
-        </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="The Last of Us Part II"
-            imgUrl={sampleChannelImage}
-            isLive
-            views="100K"
-          />
-        </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="chess"
-            imgUrl={sampleChannelImage}
-            views="100K"
-          />
-        </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="10 new Videos"
-            imgUrl={sampleChannelImage}
-          />
-        </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="1 new Viewo"
-            imgUrl={sampleChannelImage}
-          />
-        </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="4 new Videos"
-            imgUrl={sampleChannelImage}
-          />
-        </li>
+
+        {followingChannels.map(fc => (
+          <li key={fc.id}>
+            <Channel {...fc} />
+          </li>
+        ))}
+      </ul>
+
+      {/* big screens display top 5 following channels */}
+      <ul className="hidden md:block  md:flex md:flex-col md:items-center md:items-stretch">
+        {toggleShowMore ? (
+          <Fragment>
+            <DisplayTop5Following following={followingChannels} />
+            <div className="my-2">
+              <ShowButton onClick={handleToggle} text="Show More" />
+            </div>
+          </Fragment>
+        ) : (
+          <Fragment>
+            {followingChannels.map(fc => (
+              <li key={fc.id}>
+                <Channel {...fc} />
+              </li>
+            ))}
+            <div className="my-2">
+              <ShowButton onClick={handleToggle} text="Show Less" />
+            </div>
+          </Fragment>
+        )}
       </ul>
 
       <div className="md:flex md:items-center md:justify-between md:m-2">
@@ -84,77 +74,46 @@ const StreamersBar = ({ className }) => {
         <li className="md:hidden">
           <CameraOutline className="block md:hidden w-5 h-5" />
         </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="chess"
-            imgUrl={sampleChannelImage}
-            isLive
-          />
-        </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="chess"
-            imgUrl={sampleChannelImage}
-          />
-        </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="chess"
-            imgUrl={sampleChannelImage}
-          />
-        </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="chess"
-            imgUrl={sampleChannelImage}
-          />
-        </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="chess"
-            imgUrl={sampleChannelImage}
-          />
-        </li>
-        <li>
-          <Channel
-            username="GMHikaru"
-            category="chess"
-            imgUrl={sampleChannelImage}
-          />
-        </li>
+        {popularChannels.map(fc => (
+          <li key={fc.id}>
+            <Channel {...fc} isLive />
+          </li>
+        ))}
       </ul>
     </div>
   );
 };
 
-const Online = ({ className }) => {
+const ShowButton = ({ text, onClick }) => {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      strokeWidth="2"
-      stroke="none"
-      fill="red"
-      xmlns="http://www.w3.org/2000/svg"
+    <button
+      value="showFollowing"
+      onClick={onClick}
+      className=" hover:underline text-sm text-purple-400 text-left"
     >
-      <circle cx="12" cy="12" r="10" />
-    </svg>
+      {text}
+    </button>
   );
 };
 
-const Channel = ({
-  username,
-  streamTitle,
-  category,
-  imgUrl,
-  views = "16.6K",
-  isLive = false
-}) => {
+const DisplayTop5Following = ({ following }) => {
+  return following
+    .filter((_, i) => i < 5)
+    .map(fc => (
+      <li key={fc.id}>
+        <Channel {...fc} />
+      </li>
+    ));
+};
+const Channel = props => {
+  const {
+    username,
+    streamTitle,
+    category,
+    imgUrl,
+    views = "16.6K",
+    isLive = false
+  } = props;
   const streamerImage = (
     <img
       className={`rounded-full h-8 w-8 ${!isLive ? "not-live" : null}`}
@@ -163,7 +122,7 @@ const Channel = ({
     />
   );
   return (
-    <div className="md:py-1 md:px-2 flex flex-cols justify-center md:justify-between md:group md:hover:bg-blue-800 md:py-1 cursor-pointer">
+    <div className="relative md:py-1 md:px-2 flex flex-cols justify-center md:justify-between md:group md:hover:bg-blue-800 md:py-1 cursor-pointer">
       <span className="m-1 md:hidden block">{streamerImage}</span>
       <span className="md:block md:inline-flex md:items-center hidden">
         {streamerImage}
@@ -175,7 +134,7 @@ const Channel = ({
         </span>
       </span>
       <span className="md:block hidden md:inline-flex md:items-center">
-        {isLive ? <Online className="h-2 w-2" /> : null}
+        {isLive ? <Online className="h-2 w-2 mr-1" /> : null}
         <span className="text-xs">{isLive ? views : "Offline"}</span>
       </span>
     </div>
