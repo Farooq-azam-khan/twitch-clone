@@ -28,7 +28,7 @@ const Navbar = ({ className }) => {
   const [togglePrimelootDropdown, setPrimelootDropdown] = useState(false);
   const [toggleNotification, setNotificationDropdown] = useState(false);
   const [toggleSearch, setSearchDropdown] = useState(false);
-  const [toggleWhispersDropdown, setWhispersDropdown] = useState(true);
+  const [toggleWhispersDropdown, setWhispersDropdown] = useState(false);
   const [toggleLanguageDropdown, setLanguageDropdown] = useState(false);
 
   const handleWhispersDropdown = () => {
