@@ -2,7 +2,7 @@ import React from "react";
 
 const MoreDropdown = () => {
   return (
-    <div className="absolute top-0 mt-1 bg-gray-800 shaow-xl p-2 text-xs mt-8 w-64 h-64 overflow-auto">
+    <div className="absolute left-0 top-0 mt-1 bg-gray-800 shaow-xl p-2 text-xs mt-8 w-48 h-64 overflow-auto rounded-lg shadow-xl">
       <div className="border-b">
         <div className="uppercase text-gray-500 px-2">General</div>
 
