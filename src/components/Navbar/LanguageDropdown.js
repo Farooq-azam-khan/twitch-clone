@@ -1,5 +1,9 @@
 import React from "react";
 
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { changeLanguageAction } from "../../store/actions/languageActions";
+
 import { ChevronLeft, Check } from "heroicons-react";
 const languages = [
   "English",
@@ -12,9 +16,8 @@ const languages = [
   "Italiano",
   "Polski"
 ];
-const LanguageDropdown = ({ toggleClose }) => {
-  const seletedLanguage = "English";
-  // TODO: use redux to change selected language
+const LanguageDropdown = props => {
+  const { toggleClose, language, changeLanguageAction } = props;
   return (
     <div className="absolute z-30 flex flex-col right-0 w-40 bg-gray-800 rounded-md shadow-xl h-64 mt-2 text-white text-sm p-0">
       <button onClick={toggleClose}>
@@ -27,17 +30,29 @@ const LanguageDropdown = ({ toggleClose }) => {
       </button>
       <section className="overflow-auto mt-2">
         {languages.map((el, i) => (
-          <div
-            className="flex items-center justify-between hover:bg-gray-700 rounded-lg px-2 py-1 cursor-pointer"
+          <button
+            onClick={() => changeLanguageAction(el)}
+            className="block w-full flex items-center justify-between hover:bg-gray-700 rounded-lg px-2 py-1 cursor-pointer"
             key={i}
           >
             <span>{el}</span>
-            {el === seletedLanguage ? <Check className="h-4 w-4" /> : null}
-          </div>
+            {el === language ? <Check className="h-4 w-4" /> : null}
+          </button>
         ))}
       </section>
     </div>
   );
 };
 
-export default LanguageDropdown;
+LanguageDropdown.propTypes = {
+  toggleClose: PropTypes.func.isRequired,
+  language: PropTypes.string.isRequired,
+  changeLanguageAction: PropTypes.func.isRequired
+};
+
+const mapStateToProps = ({ language }) => ({ language });
+
+export default connect(
+  mapStateToProps,
+  { changeLanguageAction }
+)(LanguageDropdown);
