@@ -12,58 +12,98 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { toggleDarkMode } from "../../store/actions/darkModeActions";
+import {
+  toggleOnlineAction,
+  logOutUserAction,
+  logInUserAction
+} from "../../store/actions/userActions";
 
-import { OfflineIcon, ProfileImage } from "../../assets";
+import { OfflineIcon, Online, ProfileImage } from "../../assets";
 
 const UserProfileDropdown = props => {
   const {
     username = "my_username",
     handleLanguage,
     darkMode,
-    toggleDarkMode
+    toggleDarkMode,
+    user,
+    toggleOnlineAction,
+    logOutUserAction,
+    logInUserAction
   } = props;
   return (
-    <div className="absolute z-30 right-0 mt-3 flex flex-col bg-gray-800  text-sm text-white py-2 px-3 w-48 h-64 rounded-lg shadow-xl overflow-auto">
-      <header className="flex flex-col border-b py-2 border-gray-500">
-        <div className="inline-flex items-center">
-          <div className="mr-2">
-            <ProfileImage className="w-10 h-10 rounded-full" />
+    <div className="absolute z-30 right-0 mt-3 flex flex-col justify-center bg-gray-800  text-sm text-white py-2 px-3 w-48 h-64 rounded-lg shadow-xl overflow-auto">
+      {user.loggedIn ? (
+        <header className="flex flex-col border-b py-2 border-gray-500">
+          <div className="inline-flex items-center">
+            <div className="mr-2">
+              <ProfileImage className="w-10 h-10 rounded-full" />
+            </div>
+            <div>
+              {username}
+              <br />
+              {user.online ? (
+                <span className="inline-flex items-center">
+                  <span className="mr-2">
+                    <Online className="w-2 h-2" />
+                  </span>
+                  <span>Online</span>
+                </span>
+              ) : (
+                <span className="inline-flex items-center">
+                  <OfflineIcon className="w-2 h-2" />
+                  <span className="ml-1">
+                    {user.online ? "Online" : "Offline"}
+                  </span>
+                </span>
+              )}
+            </div>
           </div>
-          <div>
-            {username}
-            <br />
-            <span className="text-gray-400 inline-flex items-center">
-              <OfflineIcon className="w-2 h-2" />
-              <span className="ml-1">Offline</span>
+          <button
+            onClick={() => toggleOnlineAction()}
+            className="block w-full inline-flex items-center justify-between hover:bg-gray-700 rounded-lg px-2 py-1 mt-1"
+          >
+            <span>{user.online ? "Online" : "Offline"}</span>
+            <span
+              className={`${
+                user.online ? "text-purple-500" : "text-purple-300"
+              }`}
+            >
+              toggle
             </span>
-          </div>
-        </div>
-        <div className="inline-flex">Online</div>
-      </header>
-      <section className="mt-2 border-b py-1 border-gray-500">
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <button>Channel</button>
-        </div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <button>Video Producer</button>
-        </div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <button>Creator Dashboard</button>
-        </div>
-      </section>
-      <section className="mt-2 border-b py-2 border-gray-500">
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">Friends</div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <button className="inline-flex items-center">
-            <span className="mr-1">
-              <StarOutline className="w-4 h-4" />
-            </span>
-            <span>Subscriptions</span>
           </button>
-        </div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">Inventory</div>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">Wallet</div>
-      </section>
+        </header>
+      ) : null}
+      {user.loggedIn ? (
+        <section className="mt-2 border-b py-1 border-gray-500">
+          <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
+            <button>Channel</button>
+          </div>
+          <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
+            <button>Video Producer</button>
+          </div>
+          <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
+            <button>Creator Dashboard</button>
+          </div>
+        </section>
+      ) : null}
+      {user.loggedIn ? (
+        <section className="mt-2 border-b py-2 border-gray-500">
+          <div className="hover:bg-gray-700 rounded-lg px-2 py-2">Friends</div>
+          <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
+            <button className="inline-flex items-center">
+              <span className="mr-1">
+                <StarOutline className="w-4 h-4" />
+              </span>
+              <span>Subscriptions</span>
+            </button>
+          </div>
+          <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
+            Inventory
+          </div>
+          <div className="hover:bg-gray-700 rounded-lg px-2 py-2">Wallet</div>
+        </section>
+      ) : null}
       <section className="mt-2 border-b py-2 border-gray-500">
         <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
           <div className="inline-flex items-center">
@@ -110,15 +150,29 @@ const UserProfileDropdown = props => {
           </div>
         </button>
       </section>
-      <section className="mt-2 hover:bg-gray-700 rounded-lg px-2 py-2">
-        <div className="inline-flex items-center">
-          <span className="mr-1">
-            <LogoutOutline className="w-4 h-4" />
-          </span>
-          <span>
-            <button>Logout</button>
-          </span>
-        </div>
+      {/* logout action */}
+      <section className="mt-2 hover:bg-gray-700 rounded-lg ">
+        {user.loggedIn ? (
+          <button
+            onClick={() => logOutUserAction()}
+            className="w-full h-full w-full h-full inline-flex items-center px-2 py-1"
+          >
+            <span className="mr-1">
+              <LogoutOutline className="w-4 h-4" />
+            </span>
+            <span>Logout</span>
+          </button>
+        ) : (
+          <button
+            onClick={() => logInUserAction("my_username")}
+            className="w-full h-full inline-flex items-center px-2 py-1"
+          >
+            <span className="mr-1">
+              <LogoutOutline className="w-4 h-4" />
+            </span>
+            <span>Login</span>
+          </button>
+        )}
       </section>
     </div>
   );
@@ -127,12 +181,15 @@ const UserProfileDropdown = props => {
 UserProfileDropdown.propTypes = {
   username: PropTypes.string,
   handleLanguage: PropTypes.func.isRequired,
-  darkMode: PropTypes.bool.isRequired
+  darkMode: PropTypes.bool.isRequired,
+  toggleOnlineAction: PropTypes.func.isRequired,
+  logOutUserAction: PropTypes.func.isRequired,
+  logInUserAction: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({ darkMode }) => ({ darkMode });
+const mapStateToProps = ({ darkMode, user }) => ({ darkMode, user });
 
 export default connect(
   mapStateToProps,
-  { toggleDarkMode }
+  { toggleDarkMode, toggleOnlineAction, logOutUserAction, logInUserAction }
 )(UserProfileDropdown);

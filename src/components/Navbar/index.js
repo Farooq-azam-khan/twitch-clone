@@ -10,6 +10,11 @@ import {
   Briefcase
 } from "heroicons-react";
 
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+import { logInUserAction } from "../../store/actions/userActions";
+
 import { TwitchLogo, ProfileImage, BitsIcon, MusicIcon } from "../../assets";
 
 import UserProfileDropdown from "./UserProfileDropdown";
@@ -21,7 +26,7 @@ import NotificationDropdown from "./NotificationDropdown";
 import MobileSearchDropdown from "./MobileSearchDropdown";
 import WhispersDropdown from "./WhispersDropdown";
 
-const Navbar = ({ className }) => {
+const Navbar = ({ className, logInUserAction, user }) => {
   const [toggleProfile, setProfile] = useState(false);
   const [toggleMoreDropdown, setMoreDropdown] = useState(false);
   const [toggleBitsDropdown, setBitsDropdown] = useState(false);
@@ -187,16 +192,17 @@ const Navbar = ({ className }) => {
             {toggleMoreDropdown ? <MoreDropdown /> : null}
           </span>
         </span>
-        <span className="hidden md:block md:inline-flex">
-          <span className="hidden sm:block">
-            <input type="text" placeholder="search" />
+        {/* md or higher search */}
+        <span className="hidden md:flex md:items-center md:justify-between overflow-hidden md:rounded-lg md:h-8">
+          <span className="flex-grow h-full">
+            <input
+              className="pl-2 h-full focus:border-purple-900 focus:border-2 bg-gray-700 p-1 text-white text-sm leading-none font-semibold"
+              placeholder="Search"
+            />
           </span>
-          <span>
-            <button
-              value="search-lg"
-              className="bg-gray-700 text-gray-800 rounded-lg"
-            >
-              <Search />
+          <span className="bg-red-800 flex items-center h-full">
+            <button className="bg-gray-900 h-full">
+              <Search className="h-5 w-5 text-gray-700" />
             </button>
           </span>
         </span>
@@ -230,52 +236,79 @@ const Navbar = ({ className }) => {
           </span>
 
           {/* notification */}
-          <span className="relative text-white mr-1">
-            <button
-              value="notification"
-              onClick={handleDropdown}
-              className="relative z-20 hover:bg-gray-700 rounded-lg p-1"
-            >
-              <BellOutline className="w-5 h-5" />
-            </button>
+          {user.loggedIn ? (
+            <span className="relative text-white mr-1">
+              <button
+                value="notification"
+                onClick={handleDropdown}
+                className="relative z-20 hover:bg-gray-700 rounded-lg p-1"
+              >
+                <BellOutline className="w-5 h-5" />
+              </button>
 
-            {toggleNotification ? (
-              <NotificationDropdown close={handleNotification} />
-            ) : null}
-          </span>
-          <span className="relative text-white mr-1">
-            <button
-              value="whisper"
-              onClick={handleDropdown}
-              className="relative z-20 hover:bg-gray-700 rounded-lg p-1"
-            >
-              <AnnotationOutline className="w-5 h-5" />
-            </button>
+              {toggleNotification ? (
+                <NotificationDropdown close={handleNotification} />
+              ) : null}
+            </span>
+          ) : null}
+          {/* whispers */}
+          {user.loggedIn ? (
+            <span className="relative text-white mr-1">
+              <button
+                value="whisper"
+                onClick={handleDropdown}
+                className="relative z-20 hover:bg-gray-700 rounded-lg p-1"
+              >
+                <AnnotationOutline className="w-5 h-5" />
+              </button>
 
-            {toggleWhispersDropdown ? (
-              <WhispersDropdown toggleClose={handleWhispersDropdown} />
-            ) : null}
-          </span>
+              {toggleWhispersDropdown ? (
+                <WhispersDropdown toggleClose={handleWhispersDropdown} />
+              ) : null}
+            </span>
+          ) : null}
           {/* bits button */}
-          <span className="relative mr-2">
-            <button
-              value="bits"
-              onClick={handleDropdown}
-              className="block relative z-20 text-white hover:bg-gray-700 rounded-lg p-1 md:hidden"
-            >
-              <BitsIcon className="w-4 h-4" />
-            </button>
-            <button
-              value="bits"
-              onClick={handleDropdown}
-              className="hidden md:block md:inline-flex md:items-center md:relative md:z-20 bg-gray-700 px-2 py-1 text-white hover:bg-gray-600"
-            >
-              <BitsIcon className="w-4 h-4" />
-              <span className="text-sm">Get Bits</span>
-            </button>
+          {user.loggedIn ? (
+            <span className="relative mr-2">
+              <button
+                value="bits"
+                onClick={handleDropdown}
+                className="block relative z-20 text-white hover:bg-gray-700 rounded-lg p-1 md:hidden"
+              >
+                <BitsIcon className="w-4 h-4" />
+              </button>
+              <button
+                value="bits"
+                onClick={handleDropdown}
+                className="hidden md:block md:inline-flex md:items-center md:relative md:z-20 bg-gray-700 px-2 py-1 text-white hover:bg-gray-600"
+              >
+                <BitsIcon className="w-4 h-4" />
+                <span className="text-sm">Get Bits</span>
+              </button>
 
-            {toggleBitsDropdown ? <BitsDropdown /> : null}
-          </span>
+              {toggleBitsDropdown ? <BitsDropdown /> : null}
+            </span>
+          ) : null}
+
+          {/* login button */}
+          {!user.loggedIn ? (
+            <span className="bg-gray-700 hover:bg-gray-600 rounded-lg text-white text-sm leading-none px-3 py-2 mr-2">
+              <button
+                className="w-full h-full"
+                onClick={() => logInUserAction("my_username")}
+              >
+                Login
+              </button>
+            </span>
+          ) : null}
+          {/* signup button */}
+          {!user.loggedIn ? (
+            <span className="bg-purple-700 hover:bg-purple-800 rounded-lg text-white text-sm leading-none px-3 py-2 mr-2">
+              <button className="w-full h-full">Sign Up</button>
+            </span>
+          ) : null}
+
+          {/* profile */}
           <span className="relative">
             <button
               value="profile"
@@ -329,4 +362,15 @@ const NewNotification = ({ amount }) => {
   );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  className: PropTypes.string,
+  logInUserAction: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
+};
+
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(
+  mapStateToProps,
+  { logInUserAction }
+)(Navbar);

@@ -15,7 +15,7 @@ const PopularLiveChannels = ({ className }) => {
         <LiveChannelDisplay className="hidden md:block" />
       </div>
       <div className="flex justify-center items-center text-purple-400  mt-5">
-        <button className="flex items-center justify-center text-sm font-semibold hover:bg-gray-800 px-3 py-2 rounded-lg">
+        <button className="flex items-center justify-center text-sm font-semibold hover:bg-gray-800 px-3 py-2 rounded-lg -mb-4 bg-gray-900 w-50">
           <span>Show More</span>
           <span>
             <ChevronDown className="w-5 h-5" />
