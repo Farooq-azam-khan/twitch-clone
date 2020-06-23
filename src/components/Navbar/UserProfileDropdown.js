@@ -8,9 +8,20 @@ import {
   StarOutline
 } from "heroicons-react";
 
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+import { toggleDarkMode } from "../../store/actions/darkModeActions";
+
 import { OfflineIcon, ProfileImage } from "../../assets";
 
-const UserProfileDropdown = ({ username = "my_username", handleLanguage }) => {
+const UserProfileDropdown = props => {
+  const {
+    username = "my_username",
+    handleLanguage,
+    darkMode,
+    toggleDarkMode
+  } = props;
   return (
     <div className="absolute z-30 right-0 mt-3 flex flex-col bg-gray-800  text-sm text-white py-2 px-3 w-48 h-64 rounded-lg shadow-xl overflow-auto">
       <header className="flex flex-col border-b py-2 border-gray-500">
@@ -80,14 +91,24 @@ const UserProfileDropdown = ({ username = "my_username", handleLanguage }) => {
             </span>
           </div>
         </button>
-        <div className="hover:bg-gray-700 rounded-lg px-2 py-2">
-          <div className="inline-flex items-center">
-            <span className="mr-1">
-              <MoonOutline className="w-4 h-4" />
+        {/* dark mode */}
+        <button
+          onClick={() => {
+            console.log("toggle dark theme");
+            toggleDarkMode();
+          }}
+          className="block w-full hover:bg-gray-700 rounded-lg px-2 py-2"
+        >
+          <div className="flex items-center justify-between">
+            <span className="inline-flex items-center">
+              <span className="mr-1">
+                <MoonOutline className="w-4 h-4" />
+              </span>
+              <span>Dark Theme</span>
             </span>
-            <span>Dark Theme</span>
+            <div>{darkMode ? "on" : "off"}</div>
           </div>
-        </div>
+        </button>
       </section>
       <section className="mt-2 hover:bg-gray-700 rounded-lg px-2 py-2">
         <div className="inline-flex items-center">
@@ -103,4 +124,15 @@ const UserProfileDropdown = ({ username = "my_username", handleLanguage }) => {
   );
 };
 
-export default UserProfileDropdown;
+UserProfileDropdown.propTypes = {
+  username: PropTypes.string,
+  handleLanguage: PropTypes.func.isRequired,
+  darkMode: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = ({ darkMode }) => ({ darkMode });
+
+export default connect(
+  mapStateToProps,
+  { toggleDarkMode }
+)(UserProfileDropdown);
