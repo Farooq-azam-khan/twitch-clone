@@ -32,7 +32,8 @@ const UserProfileDropdown = props => {
     logInUserAction
   } = props;
   return (
-    <div className="absolute z-30 right-0 mt-3 flex flex-col justify-center bg-gray-800  text-sm text-white py-2 px-3 w-48 h-64 rounded-lg shadow-xl overflow-auto">
+    <div className="absolute z-30 right-0 mt-3 flex flex-col bg-gray-800 text-sm text-white py-2 px-3 w-48 h-64 rounded-lg shadow-xl overflow-auto">
+      {/* user header */}
       {user.loggedIn ? (
         <header className="flex flex-col border-b py-2 border-gray-500">
           <div className="inline-flex items-center">
