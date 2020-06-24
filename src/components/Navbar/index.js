@@ -36,7 +36,7 @@ const Navbar = ({ className, logInUserAction, user }) => {
   const [toggleSearch, setSearchDropdown] = useState(false);
   const [toggleWhispersDropdown, setWhispersDropdown] = useState(false);
   const [toggleLanguageDropdown, setLanguageDropdown] = useState(false);
-  const [toggleUserActivityModal, setUserActivityModal] = useState(true);
+  const [toggleUserActivityModal, setUserActivityModal] = useState(false);
 
   const setFalse = list => {
     list.map(e => e(false));

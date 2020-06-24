@@ -2,14 +2,19 @@ import React, { useState, Fragment } from "react";
 import {
   ChevronLeftOutline,
   HeartOutline,
+  UserOutline,
   CameraOutline
 } from "heroicons-react";
+
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import { Online } from "../assets";
 import followingChannels from "../assets/followingChannels";
 import popularChannels from "../assets/popularChannels";
 
-const StreamersBar = ({ className }) => {
+const StreamersBar = ({ className, user }) => {
+  console.log(user);
   const [toggleShowMore, setShowMore] = useState(true);
   const handleToggle = e => {
     if (e.target.value === "showFollowing") {
@@ -18,68 +23,91 @@ const StreamersBar = ({ className }) => {
   };
   return (
     <div className={className}>
-      <div className="md:flex md:items-center md:justify-between md:m-2">
-        <span className="hidden md:block md:uppercase text-xs">
-          Followed Channels
-        </span>
-        <span>
-          <button className="hidden md:block hover:bg-blue-800 p-1 rounded-lg">
-            <ChevronLeftOutline className="h-4 w-4 " />
-          </button>
-        </span>
-      </div>
+      <div className="bg-gray-800 flex-grow overflow-y-auto w-full">
+        {user.loggedIn ? (
+          <div className="md:flex md:items-center md:justify-between md:m-2">
+            <span className="hidden md:block md:uppercase text-xs">
+              Followed Channels
+            </span>
+            <span>
+              <button className="hidden md:block hover:bg-blue-800 p-1 rounded-lg">
+                <ChevronLeftOutline className="h-4 w-4 " />
+              </button>
+            </span>
+          </div>
+        ) : null}
 
-      {/* small screens display all following channels  */}
-      <ul className="md:hidden flex flex-col items-center md:items-stretch">
-        <li className="block md:hidden">
-          <HeartOutline className="w-5 h-5" />
-        </li>
+        {/* small screens display all following channels  */}
+        {user.loggedIn ? (
+          <ul className="md:hidden flex flex-col items-center md:items-stretch">
+            <li className="block md:hidden">
+              <HeartOutline className="w-5 h-5" />
+            </li>
 
-        {followingChannels.map(fc => (
-          <li key={fc.id}>
-            <Channel {...fc} />
-          </li>
-        ))}
-      </ul>
-
-      {/* big screens display top 5 following channels */}
-      <ul className="hidden md:block  md:flex md:flex-col md:items-center md:items-stretch">
-        {toggleShowMore ? (
-          <Fragment>
-            <DisplayTop5Following following={followingChannels} />
-            <div className="my-2">
-              <ShowButton onClick={handleToggle} text="Show More" />
-            </div>
-          </Fragment>
-        ) : (
-          <Fragment>
             {followingChannels.map(fc => (
               <li key={fc.id}>
                 <Channel {...fc} />
               </li>
             ))}
-            <div className="my-2">
-              <ShowButton onClick={handleToggle} text="Show Less" />
-            </div>
-          </Fragment>
-        )}
-      </ul>
+          </ul>
+        ) : null}
 
-      <div className="md:flex md:items-center md:justify-between md:m-2">
-        <span className="hidden md:block md:uppercase md:text-xs">
-          Popular Channels
-        </span>
-      </div>
-      <ul className="mt-1 md:mt-0 flex flex-col items-center md:items-stretch">
-        <li className="md:hidden">
-          <CameraOutline className="block md:hidden w-5 h-5" />
-        </li>
-        {popularChannels.map(fc => (
-          <li key={fc.id}>
-            <Channel {...fc} isLive />
+        {/* big screens display top 5 following channels */}
+        {user.loggedIn ? (
+          <ul className="hidden md:block  md:flex md:flex-col md:items-center md:items-stretch">
+            {toggleShowMore ? (
+              <Fragment>
+                <DisplayTop5Following following={followingChannels} />
+                <div className="my-2">
+                  <ShowButton onClick={handleToggle} text="Show More" />
+                </div>
+              </Fragment>
+            ) : (
+              <Fragment>
+                {followingChannels.map(fc => (
+                  <li key={fc.id}>
+                    <Channel {...fc} />
+                  </li>
+                ))}
+                <div className="my-2">
+                  <ShowButton onClick={handleToggle} text="Show Less" />
+                </div>
+              </Fragment>
+            )}
+          </ul>
+        ) : null}
+
+        <div className="md:flex md:items-center md:justify-between md:m-2">
+          <span className="hidden md:block md:uppercase md:text-xs">
+            Popular Channels
+          </span>
+        </div>
+        <ul className="mt-1 md:mt-0 flex flex-col items-center md:items-stretch">
+          <li className="md:hidden">
+            <CameraOutline className="block md:hidden w-5 h-5" />
           </li>
-        ))}
-      </ul>
+          {popularChannels.map(fc => (
+            <li key={fc.id}>
+              <Channel {...fc} isLive />
+            </li>
+          ))}
+        </ul>
+        {user.loggedIn ? (
+          <div className="block md:hidden mt-1 text-center md:border-t border-blue-700">
+            <button>
+              <UserOutline className="w-5 h-5" />
+            </button>
+          </div>
+        ) : null}
+      </div>
+      {user.loggedIn ? (
+        <div className="hidden md:flex bg-gray-800 border-t border-gray-700 items-center justify-center w-full px-3 py-2 bg-gray-700">
+          <input
+            className="bg-gray-700 p-1 rounded-lg text-md leading-none"
+            placeholder="Search to Add Friends"
+          />
+        </div>
+      ) : null}
     </div>
   );
 };
@@ -141,4 +169,14 @@ const Channel = props => {
   );
 };
 
-export default StreamersBar;
+StreamersBar.propTypes = {
+  className: PropTypes.string,
+  user: PropTypes.object.isRequired
+};
+
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(
+  mapStateToProps,
+  {}
+)(StreamersBar);
