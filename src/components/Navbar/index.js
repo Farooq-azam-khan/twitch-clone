@@ -25,6 +25,7 @@ import PrimeLootDropdown from "./PrimeLootDropdown";
 import NotificationDropdown from "./NotificationDropdown";
 import MobileSearchDropdown from "./MobileSearchDropdown";
 import WhispersDropdown from "./WhispersDropdown";
+import UserActivityModal from "../UserActivityModal";
 
 const Navbar = ({ className, logInUserAction, user }) => {
   const [toggleProfile, setProfile] = useState(false);
@@ -35,6 +36,7 @@ const Navbar = ({ className, logInUserAction, user }) => {
   const [toggleSearch, setSearchDropdown] = useState(false);
   const [toggleWhispersDropdown, setWhispersDropdown] = useState(false);
   const [toggleLanguageDropdown, setLanguageDropdown] = useState(false);
+  const [toggleUserActivityModal, setUserActivityModal] = useState(true);
 
   const setFalse = list => {
     list.map(e => e(false));
@@ -292,10 +294,10 @@ const Navbar = ({ className, logInUserAction, user }) => {
 
           {/* login button */}
           {!user.loggedIn ? (
-            <span className="bg-gray-700 hover:bg-gray-600 rounded-lg text-white text-sm leading-none px-3 py-2 mr-2">
+            <span className="bg-gray-700 hover:bg-gray-600 rounded-lg text-white text-sm leading-none mr-2">
               <button
-                className="w-full h-full"
-                onClick={() => logInUserAction("my_username")}
+                className="w-full h-full px-3 py-2"
+                onClick={() => setUserActivityModal(true)}
               >
                 Login
               </button>
@@ -303,8 +305,13 @@ const Navbar = ({ className, logInUserAction, user }) => {
           ) : null}
           {/* signup button */}
           {!user.loggedIn ? (
-            <span className="bg-purple-700 hover:bg-purple-800 rounded-lg text-white text-sm leading-none px-3 py-2 mr-2">
-              <button className="w-full h-full">Sign Up</button>
+            <span className="bg-purple-700 hover:bg-purple-800 rounded-lg text-white text-sm leading-none  mr-2">
+              <button
+                onClick={() => setUserActivityModal(true)}
+                className="w-full h-full px-3 py-2"
+              >
+                Sign Up
+              </button>
             </span>
           ) : null}
 
@@ -327,6 +334,15 @@ const Navbar = ({ className, logInUserAction, user }) => {
           </span>
         </span>
       </div>
+      {toggleUserActivityModal ? (
+        <div>
+          <button
+            onClick={() => setUserActivityModal(false)}
+            className="fixed z-20 inset-0 w-full h-full cursor-default bg-black opacity-75"
+          />
+          <UserActivityModal close={setUserActivityModal} />
+        </div>
+      ) : null}
       {toggleProfile ||
       toggleLanguageDropdown ||
       toggleMoreDropdown ||
