@@ -3,7 +3,8 @@ import {
   ChevronLeftOutline,
   HeartOutline,
   UserOutline,
-  CameraOutline
+  CameraOutline,
+  SearchOutline
 } from "heroicons-react";
 
 import PropTypes from "prop-types";
@@ -14,7 +15,6 @@ import followingChannels from "../assets/followingChannels";
 import popularChannels from "../assets/popularChannels";
 
 const StreamersBar = ({ className, user }) => {
-  console.log(user);
   const [toggleShowMore, setShowMore] = useState(true);
   const handleToggle = e => {
     if (e.target.value === "showFollowing") {
@@ -101,11 +101,14 @@ const StreamersBar = ({ className, user }) => {
         ) : null}
       </div>
       {user.loggedIn ? (
-        <div className="hidden md:flex bg-gray-800 border-t border-gray-700 items-center justify-center w-full px-3 py-2 bg-gray-700">
+        <div className="md:relative hidden md:flex bg-gray-800 border-t w-full border-gray-700 md:items-center md:justify-center">
           <input
-            className="bg-gray-700 p-1 rounded-lg text-md leading-none"
+            className="block mx-2 my-2 bg-gray-700 text-gray-500 w-full pl-8 pr-3 py-2 rounded-lg text-sm leading-none"
             placeholder="Search to Add Friends"
           />
+          <div className="absolute left-0">
+            <SearchOutline className="ml-3 text-gray-500 w-5 h-5" />
+          </div>
         </div>
       ) : null}
     </div>
