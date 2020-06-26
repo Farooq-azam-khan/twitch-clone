@@ -16,8 +16,8 @@ const followingChannels = [
   },
   {
     id: 2,
-    username: "GMHikaru",
-    category: "Chess",
+    username: "XQCow",
+    category: "Minecraft",
     imgUrl: sampleChannelImage2,
 
     isLive: true,
@@ -25,15 +25,15 @@ const followingChannels = [
   },
   {
     id: 3,
-    username: "GMHikaru",
-    category: "Chess",
+    username: "Nym",
+    category: "Just Chatting",
     imgUrl: sampleChannelImage3,
     isLive: false,
     views: "1M"
   },
   {
     id: 4,
-    username: "GMHikaru",
+    username: "Chess",
     category: "Chess",
     imgUrl:
       "https://static-cdn.jtvnw.net/jtv_user_pictures/xqcow-profile_image-9298dca608632101-70x70.jpeg",

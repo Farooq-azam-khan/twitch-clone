@@ -6,14 +6,16 @@ import "./styles/tailwind.css";
 import "./styles/styles.css";
 
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
+import {
+  BrowserRouter as Router
+} from "react-router-dom";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <Router>
       <App />
-    </BrowserRouter>
+    </Router>
   </React.StrictMode>,
   rootElement
 );

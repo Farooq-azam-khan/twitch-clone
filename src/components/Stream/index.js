@@ -1,12 +1,11 @@
 import React from 'react'
-
 import ChatSection from './ChatSection';
-
 import * as Icons from 'heroicons-react';
-
+import { useParams } from 'react-router-dom'
 import { sampleChannelImage4 } from '../../assets';
 
 const Stream = ({ className }) => {
+    const { id } = useParams()
     return (
         <section className={className}>
             <div className="w-9/12 flex-grow flex flex-col space-y-3 overflow-auto">
@@ -22,7 +21,7 @@ const Stream = ({ className }) => {
                         </div>
                         <div className="">
                             <div className="inline-flex items-center space-x-2">
-                                <span><h2 className="font-bold text-md hover:underline"><a href="#">XQCow</a></h2></span>
+                                <span><h2 className="font-bold text-md hover:underline"><a href="#">{id}</a></h2></span>
                                 <span><Icons.BadgeCheck className="w-6 h-6" /></span>
                             </div>
                             <div className="font-bold text-lg"><h1>This is the title</h1></div>
