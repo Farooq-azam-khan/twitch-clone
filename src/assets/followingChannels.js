@@ -1,7 +1,8 @@
 import {
   sampleChannelImage,
   sampleChannelImage2,
-  sampleChannelImage3
+  sampleChannelImage3,
+  sampleChannelImage4
 } from "./index";
 
 const followingChannels = [
@@ -44,7 +45,7 @@ const followingChannels = [
     id: 5,
     username: "GMHikaru",
     category: "Chess",
-    imgUrl: sampleChannelImage,
+    imgUrl: sampleChannelImage4,
     isLive: false,
     views: "1M"
   },

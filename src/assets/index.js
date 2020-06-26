@@ -8,6 +8,10 @@ const sampleChannelImage2 =
 
 const sampleChannelImage3 =
   "https://static-cdn.jtvnw.net/jtv_user_pictures/xqcow-profile_image-9298dca608632101-70x70.jpeg";
+
+const sampleChannelImage4 =
+  "https://static-cdn.jtvnw.net/jtv_user_pictures/1fc90a02-f40a-40b1-9a77-a4031d9d3ec0-profile_image-150x150.png";
+
 const Online = ({ className }) => {
   return (
     <svg
@@ -103,14 +107,32 @@ const MusicIcon = () => {
   );
 };
 
+const sampleChannelImage5 =
+  "https://static-cdn.jtvnw.net/jtv_user_pictures/1298abf8-7aa0-4545-a65c-3ffaf2907a73-profile_image-50x50.png";
+
+const LivePill = () => {
+  return (
+    <div className="bg-red-700 rounded-lg px-2 py-1 text-xs leading-none">
+      LIVE
+    </div>
+  );
+};
+
+const JustChatting =
+  "https://static-cdn.jtvnw.net/ttv-boxart/Just%20Chatting-188x250.jpg";
+
 export {
+  JustChatting,
+  LivePill,
   sampleChannelImage,
   sampleChannelImage2,
   TwitchLogo,
   sampleChannelImage3,
+  sampleChannelImage5,
   Online,
   OfflineIcon,
   ProfileImage,
   BitsIcon,
-  MusicIcon
+  MusicIcon,
+  sampleChannelImage4
 };
