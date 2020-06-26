@@ -148,7 +148,6 @@ const Channel = props => {
     views = "16.6K",
     isLive = false
   } = props;
-  console.log({ props })
   const streamerImage = (
     <img
       className={`rounded-full h-8 w-8 ${!isLive ? "not-live" : null}`}

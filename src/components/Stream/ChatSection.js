@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { useParams } from 'react-router-dom'
 
 import * as Icons from 'heroicons-react'
 const ChatSection = ({ className }) => {
   const [toggleSettings, showSettings] = useState(false)
+  const [toggleChannelPoints, showChannelPoints] = useState(true)
+
   const handleSettings = () => { showSettings(!toggleSettings) }
+  const handleChannelPoints = () => { showChannelPoints(!toggleChannelPoints) }
+  const { id } = useParams();
 
   return <div className={className}>
     <header className="px-3 border-b border-gray-200">
@@ -33,7 +38,16 @@ const ChatSection = ({ className }) => {
 </section>
     <div className="mt-2 px-1"><input placeholder="Send a message" className="w-full px-3 py-2 rounded-lg h-full bg-gray-700 border-transparent focus:border-purple-900 focus:bg-black" /></div>
     <div className="inline-flex items-center justify-between px-3 py-2">
-      <button className="text-xs hover:bg-gray-700 hover:text-gray-300 rounded-lg px-2 py-1 w-1/3 h-full">2.3K</button>
+      <span className="text-xs hover:bg-gray-700 hover:text-gray-300 rounded-lg w-1/3 h-full">
+        <button onClick={handleChannelPoints} className="w-full h-full"><span className="relative inline-flex items-center py-1 justify-between space-x-1">
+          <span><Icons.CurrencyEuro className="w-5 h-5" /></span>
+          <span>2.3K</span>
+        </span></button>
+        {toggleChannelPoints ? <>
+          <button onClick={() => showChannelPoints(false)} className="fixed z-10 w-full h-full inset-0"></button>
+          <ChannelPoints username={id} close={showChannelPoints} />
+        </> : null}
+      </span>
       <span className="relative inline-flex items-center justify-between space-x-1">
         <span className="relative h-6 w-6">
 
@@ -65,5 +79,23 @@ const Settings = ({ close }) => {
     </div>
 
   </div>)
+}
+
+const ChannelPoints = ({ username, close }) => {
+  return <div className="absolute z-20 bottom-0 right-0 border border-gray-800 flex flex-col space-y-3  bg-gray-900 rounded-lg shadow-xl w-64 h-64 p-2">
+    <div className="inline-flex justify-between px-3 py-2 text-sm text-gray-300 font-semibold border-b border-gray-800 shadow-sm">
+      <span className="flex-grow text-center">{username}'s points</span>
+      <button onClick={() => close(false)}><Icons.XOutline className="w-5 h-5" /></button>
+    </div>
+    <div className="overflow-auto flex flex-col space-y-2">
+      <div className="w-full mb-2">Duis mollit quis fugiat quis laborum eiusmod excepteur et excepteur commodo. Tempor aute eu velit qui duis pariatur ad minim non reprehenderit. Amet deserunt culpa amet labore cillum. Laborum ea tempor velit ullamco id adipisicing proident. Ad nulla officia sunt fugiat dolore occaecat adipisicing in labore Lorem irure aliqua exercitation. Sunt amet ullamco qui aute do sint non aliquip id aliqua fugiat irure nostrud occaecat.
+
+      Id et commodo fugiat veniam. Labore enim aliqua laborum reprehenderit voluptate eiusmod eu minim nulla excepteur. Proident et culpa exercitation et ullamco commodo laboris eiusmod. Duis nisi velit elit incididunt labore et consectetur minim irure tempor sit esse. Duis voluptate velit irure in sint incididunt est sit cupidatat et sint.
+
+Mollit duis sit quis nisi aliqua tempor velit. Id deserunt ut commodo non ipsum tempor do velit tempor exercitation exercitation ad. Occaecat tempor duis qui aliqua ad nostrud occaecat occaecat cillum aliqua sit. Cillum in dolore velit sint. Sint ipsum laborum enim dolor non. Nulla exercitation proident exercitation nostrud consequat dolore mollit nulla commodo ipsum aliqua amet Lorem.</div>
+      <div className="mx-2"><button className="font-semibold text-xs px-2 py-1 w-full hover:bg-gray-700 bg-gray-800 rounded-lg">How to Earn Channel Points</button></div>
+    </div>
+
+  </div>
 }
 export default ChatSection;

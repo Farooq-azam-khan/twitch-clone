@@ -51,13 +51,13 @@ const UserProfileDropdown = props => {
                   <span>Online</span>
                 </span>
               ) : (
-                <span className="inline-flex items-center">
-                  <OfflineIcon className="w-2 h-2" />
-                  <span className="ml-1">
-                    {user.online ? "Online" : "Offline"}
+                  <span className="inline-flex items-center">
+                    <OfflineIcon className="w-2 h-2" />
+                    <span className="ml-1">
+                      {user.online ? "Online" : "Offline"}
+                    </span>
                   </span>
-                </span>
-              )}
+                )}
             </div>
           </div>
           <button
@@ -68,7 +68,7 @@ const UserProfileDropdown = props => {
             <span
               className={`${
                 user.online ? "text-purple-500" : "text-purple-300"
-              }`}
+                }`}
             >
               toggle
             </span>
@@ -135,7 +135,6 @@ const UserProfileDropdown = props => {
         {/* dark mode */}
         <button
           onClick={() => {
-            console.log("toggle dark theme");
             toggleDarkMode();
           }}
           className="block w-full hover:bg-gray-700 rounded-lg px-2 py-2"
@@ -164,16 +163,16 @@ const UserProfileDropdown = props => {
             <span>Logout</span>
           </button>
         ) : (
-          <button
-            onClick={() => logInUserAction("my_username")}
-            className="w-full h-full inline-flex items-center px-2 py-1"
-          >
-            <span className="mr-1">
-              <LogoutOutline className="w-4 h-4" />
-            </span>
-            <span>Login</span>
-          </button>
-        )}
+            <button
+              onClick={() => logInUserAction("my_username")}
+              className="w-full h-full inline-flex items-center px-2 py-1"
+            >
+              <span className="mr-1">
+                <LogoutOutline className="w-4 h-4" />
+              </span>
+              <span>Login</span>
+            </button>
+          )}
       </section>
     </div>
   );

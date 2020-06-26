@@ -137,7 +137,6 @@ const Navbar = ({ className, logInUserAction, user }) => {
     setWhispersDropdown(!toggleWhispersDropdown);
   };
   const handleLanguage = () => {
-    console.log("toggle language");
     setLanguageDropdown(!toggleLanguageDropdown);
     setProfile(!toggleProfile);
   };
