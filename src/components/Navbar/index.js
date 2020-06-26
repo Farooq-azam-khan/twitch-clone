@@ -153,31 +153,31 @@ const Navbar = ({ className, logInUserAction, user }) => {
   return (
     <div className={className}>
       <div className="flex items-center justify-between">
-        <span className="inline-flex items-center">
+        <span className="inline-flex items-center space-x-4">
           <span>
             <TwitchLogo className="w-5 h-5" />
           </span>
-          <a href="#" className="text-white mr-2 ml-3 hover:text-purple-600">
+          <a href="#" className="text-white hover:text-purple-600">
             <span className="block md:hidden">
               <Heart className="w-5 h-5" />
             </span>
             <span className="hidden md:block">Following</span>
           </a>
           {/* can do borer right */}
-          <a href="#" className="text-white mr-3 hover:text-purple-600">
+          <a href="#" className="text-white hover:text-purple-600">
             <span className="block md:hidden">
               <DuplicateOutline className="w-5 h-5 hover:text-purple-600" />
             </span>
             <span className="hidden md:block">Browse</span>
           </a>
           <span className="text-gray-600">|</span>
-          <a href="#" className="text-white mr-2 ml-3 hover:text-purple-600">
+          <a href="#" className="text-white hover:text-purple-600">
             <span className="block md:hidden">
               <Briefcase className="w-5 h-5 hover:text-purple-600" />
             </span>
             <span className="hidden md:block">Esport</span>
           </a>
-          <a href="#" className="text-white mr-2 hover:text-purple-600">
+          <a href="#" className="text-white hover:text-purple-600">
             <span className="block md:hidden">
               <MusicIcon className="w-5 h-5" />
             </span>
@@ -344,28 +344,28 @@ const Navbar = ({ className, logInUserAction, user }) => {
         </div>
       ) : null}
       {toggleProfile ||
-      toggleLanguageDropdown ||
-      toggleMoreDropdown ||
-      toggleBitsDropdown ||
-      togglePrimelootDropdown ||
-      toggleNotification ||
-      toggleSearch ||
-      toggleWhispersDropdown ? (
-        <button
-          tabIndex="-1"
-          onClick={() => {
-            setProfile(false);
-            setLanguageDropdown(false);
-            setMoreDropdown(false);
-            setNotificationDropdown(false);
-            setPrimelootDropdown(false);
-            setSearchDropdown(false);
-            setWhispersDropdown(false);
-            setBitsDropdown(false);
-          }}
-          className="fixed z-10 inset-0 w-full h-full cursor-default"
-        />
-      ) : null}
+        toggleLanguageDropdown ||
+        toggleMoreDropdown ||
+        toggleBitsDropdown ||
+        togglePrimelootDropdown ||
+        toggleNotification ||
+        toggleSearch ||
+        toggleWhispersDropdown ? (
+          <button
+            tabIndex="-1"
+            onClick={() => {
+              setProfile(false);
+              setLanguageDropdown(false);
+              setMoreDropdown(false);
+              setNotificationDropdown(false);
+              setPrimelootDropdown(false);
+              setSearchDropdown(false);
+              setWhispersDropdown(false);
+              setBitsDropdown(false);
+            }}
+            className="fixed z-10 inset-0 w-full h-full cursor-default"
+          />
+        ) : null}
     </div>
   );
 };

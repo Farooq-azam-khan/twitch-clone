@@ -7,6 +7,9 @@ import {
   SearchOutline
 } from "heroicons-react";
 
+import { Link } from "react-router-dom";
+
+
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -63,17 +66,17 @@ const StreamersBar = ({ className, user }) => {
                 </div>
               </Fragment>
             ) : (
-              <Fragment>
-                {followingChannels.map(fc => (
-                  <li key={fc.id}>
-                    <Channel {...fc} />
-                  </li>
-                ))}
-                <div className="my-2">
-                  <ShowButton onClick={handleToggle} text="Show Less" />
-                </div>
-              </Fragment>
-            )}
+                <Fragment>
+                  {followingChannels.map(fc => (
+                    <li key={fc.id}>
+                      <Channel {...fc} />
+                    </li>
+                  ))}
+                  <div className="my-2">
+                    <ShowButton onClick={handleToggle} text="Show Less" />
+                  </div>
+                </Fragment>
+              )}
           </ul>
         ) : null}
 
@@ -153,22 +156,24 @@ const Channel = props => {
     />
   );
   return (
-    <div className="relative md:py-1 md:px-2 flex flex-cols justify-center md:justify-between md:group md:hover:bg-blue-800 md:py-1 cursor-pointer">
-      <span className="m-1 md:hidden block">{streamerImage}</span>
-      <span className="md:block md:inline-flex md:items-center hidden">
-        {streamerImage}
-        <span>{streamTitle} </span>
-        <span className="ml-2 text-xs">
-          {username}
-          <br />
-          {category}
+    <Link to={`/${username}`}>
+      <div className="relative md:py-1 md:px-2 flex flex-cols justify-center md:justify-between md:group md:hover:bg-blue-800 md:py-1 cursor-pointer">
+        <span className="m-1 md:hidden block">{streamerImage}</span>
+        <span className="md:block md:inline-flex md:items-center hidden">
+          {streamerImage}
+          <span>{streamTitle} </span>
+          <span className="ml-2 text-xs">
+            {username}
+            <br />
+            {category}
+          </span>
         </span>
-      </span>
-      <span className="md:block hidden md:inline-flex md:items-center">
-        {isLive ? <Online className="h-2 w-2 mr-1" /> : null}
-        <span className="text-xs">{isLive ? views : "Offline"}</span>
-      </span>
-    </div>
+        <span className="md:block hidden md:inline-flex md:items-center">
+          {isLive ? <Online className="h-2 w-2 mr-1" /> : null}
+          <span className="text-xs">{isLive ? views : "Offline"}</span>
+        </span>
+      </div>
+    </Link>
   );
 };
 
