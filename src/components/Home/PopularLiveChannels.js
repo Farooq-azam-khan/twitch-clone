@@ -28,12 +28,12 @@ const PopularLiveChannels = ({ className }) => {
           </button>
         </div>
       ) : (
-        <div className="flex my-2">
-          <LiveChannelDisplay />
-          <LiveChannelDisplay />
-          <LiveChannelDisplay className="hidden md:block" />
-        </div>
-      )}
+          <div className="flex my-2">
+            <LiveChannelDisplay />
+            <LiveChannelDisplay />
+            <LiveChannelDisplay className="hidden md:block" />
+          </div>
+        )}
     </div>
   );
 };
@@ -41,7 +41,7 @@ const PopularLiveChannels = ({ className }) => {
 const LiveChannelDisplay = ({ className }) => {
   return (
     <div className={`flex flex-col w-1/2 md:w-1/3 mr-2 ${className}`}>
-      <div className="w-full h-32 bg-gray-600 relative border-2 hover:border-purple-800">
+      <div className="w-full h-32 bg-gray-600 relative border-l-4 border-b-4 hover:border-purple-700">
         <div className="absolute top-0 mt-1 ml-2">
           <LivePill />
         </div>
