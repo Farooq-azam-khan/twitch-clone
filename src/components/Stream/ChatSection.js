@@ -38,7 +38,7 @@ const ChatSection = ({ className }) => {
 </section>
     <div className="mt-2 px-1"><input placeholder="Send a message" className="w-full px-3 py-2 rounded-lg h-full bg-gray-700 border-transparent focus:border-purple-900 focus:bg-black" /></div>
     <div className="inline-flex items-center justify-between px-3 py-2">
-      <span className="text-xs hover:bg-gray-700 hover:text-gray-300 rounded-lg w-1/3 h-full">
+      <span className="relative text-xs hover:bg-gray-700 hover:text-gray-300 rounded-lg w-1/3 h-full">
         <button onClick={handleChannelPoints} className="w-full h-full"><span className="relative inline-flex items-center py-1 justify-between space-x-1">
           <span><Icons.CurrencyEuro className="w-5 h-5" /></span>
           <span>2.3K</span>
