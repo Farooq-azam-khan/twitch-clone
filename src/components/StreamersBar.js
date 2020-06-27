@@ -95,6 +95,11 @@ const StreamersBar = ({ className, user }) => {
             </li>
           ))}
         </ul>
+        {!user.loggedIn ? (<div className="w-11/12 rounded-lg bg-gray-900 px-4 shadow-lg py-2 mt-2 mx-auto">
+          <h2 className="font-bold text-xl text-gray-200">Join the <span className="text-purple-600">Twitch</span> community!</h2>
+          <p className="text-sm mt-3">Discover the best live streams anywhere.</p><div>
+            <button className="mt-3 bg-purple-500 px-2 py-1 rounded-lg text-sm">Sign up</button></div>
+        </div>) : null}
         {user.loggedIn ? (
           <div className="block md:hidden mt-1 text-center md:border-t border-blue-700">
             <button>

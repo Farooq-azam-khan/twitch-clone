@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import * as Icons from 'heroicons-react'
 const ChatSection = ({ className }) => {
   const [toggleSettings, showSettings] = useState(false)
-  const [toggleChannelPoints, showChannelPoints] = useState(true)
+  const [toggleChannelPoints, showChannelPoints] = useState(false)
 
   const handleSettings = () => { showSettings(!toggleSettings) }
   const handleChannelPoints = () => { showChannelPoints(!toggleChannelPoints) }
