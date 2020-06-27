@@ -9,6 +9,8 @@ import {
 
 import { Link } from "react-router-dom";
 
+import UserActivityModal from './UserActivityModal';
+
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -95,11 +97,7 @@ const StreamersBar = ({ className, user }) => {
             </li>
           ))}
         </ul>
-        {!user.loggedIn ? (<div className="w-11/12 rounded-lg bg-gray-900 px-4 shadow-lg py-2 mt-2 mx-auto">
-          <h2 className="font-bold text-xl text-gray-200">Join the <span className="text-purple-600">Twitch</span> community!</h2>
-          <p className="text-sm mt-3">Discover the best live streams anywhere.</p><div>
-            <button className="mt-3 bg-purple-500 px-2 py-1 rounded-lg text-sm">Sign up</button></div>
-        </div>) : null}
+        {!user.loggedIn ? (<SignoutCard />) : null}
         {user.loggedIn ? (
           <div className="block md:hidden mt-1 text-center md:border-t border-blue-700">
             <button>
@@ -123,6 +121,21 @@ const StreamersBar = ({ className, user }) => {
   );
 };
 
+const SignoutCard = () => {
+  const [toggleSignup, setSignup] = useState(false);
+  const handleSignup = () => {
+    console.log('toggle signup')
+    setSignup(!toggleSignup)
+  }
+
+  return (<div className="w-11/12 rounded-lg bg-gray-900 px-4 shadow-lg py-2 mt-2 mx-auto">
+    <h2 className="font-bold text-xl text-gray-200">Join the <span className="text-purple-600">Twitch</span> community!</h2>
+    <p className="text-sm mt-3">Discover the best live streams anywhere.</p><div>
+      <button onClick={handleSignup} className="cursor-pointer mt-3 bg-purple-500 px-2 py-1 rounded-lg text-sm">Sign up</button>
+      {toggleSignup ? <><button onClick={() => setSignup(false)} className="fixed inset-0 w-full h-full z-20 bg-black opacity-50 "></button><UserActivityModal buttonValue='sign-up' close={setSignup} /></> : null}
+    </div>
+  </div>)
+}
 const ShowButton = ({ text, onClick }) => {
   return (
     <button
@@ -162,7 +175,7 @@ const Channel = props => {
   );
   return (
     <Link to={`/${username}`}>
-      <div className="relative md:py-1 md:px-2 flex flex-cols justify-center md:justify-between md:group md:hover:bg-blue-800 md:py-1 cursor-pointer">
+      <div className="relative md:py-1 md:px-2 flex flex-cols justify-center md:justify-between md:group md:hover:bg-blue-800 md:py-1">
         <span className="m-1 md:hidden block">{streamerImage}</span>
         <span className="md:block md:inline-flex md:items-center hidden">
           {streamerImage}
