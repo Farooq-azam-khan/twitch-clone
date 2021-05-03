@@ -2,3 +2,4 @@ node_modules
 tailwind.css
 build
 elm-stuff
+elm.js
