@@ -8,7 +8,7 @@
     "autoprefixer": "9.8.0",
     "heroicons": "0.3.6",
     "heroicons-react": "1.0.15",
-    "postcss": "7.0.32",
+    "postcss": "8.2.10",
     "postcss-cli": "7.1.1",
     "prop-types": "15.7.2",
     "react": "16.12.0",
