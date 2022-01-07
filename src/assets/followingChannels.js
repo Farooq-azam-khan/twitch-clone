@@ -16,15 +16,6 @@ const followingChannels = [
   },
   {
     id: 2,
-    username: "XQCow",
-    category: "Minecraft",
-    imgUrl: sampleChannelImage2,
-
-    isLive: true,
-    views: "1M"
-  },
-  {
-    id: 3,
     username: "Nym",
     category: "Just Chatting",
     imgUrl: sampleChannelImage3,
@@ -41,22 +32,6 @@ const followingChannels = [
     isLive: false,
     views: "1M"
   },
-  {
-    id: 5,
-    username: "GMHikaru",
-    category: "Chess",
-    imgUrl: sampleChannelImage4,
-    isLive: false,
-    views: "1M"
-  },
-  {
-    id: 6,
-    username: "GMHikaru",
-    category: "Chess",
-    imgUrl: sampleChannelImage2,
-    isLive: false,
-    views: "1M"
-  }
 ];
 
 export default followingChannels;
