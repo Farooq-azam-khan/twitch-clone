@@ -7,7 +7,7 @@ import Icons exposing (..)
 import Types exposing (..)
 
 
-navbar_view : String -> Model -> Html Msg
+navbar_view : String -> Model -> Html msg
 navbar_view class_name _ =
     nav
         [ class class_name ]
