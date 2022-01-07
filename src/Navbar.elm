@@ -54,30 +54,25 @@ right_nav_items : Html msg
 right_nav_items =
     span
         -- right navbar
-        [ class "flex items-center justify-center space-x-1" ]
-        [ span
+        [ class "flex items-center justify-center space-x-2" ]
+        [ button
             -- prime loot nav item
-            [ class "relative text-white mr-1" ]
-            [ button
-                [ class "relative z-20 hover:bg-gray-700 rounded-lg p-1" ]
-                [ text "desktop-icon" ]
-            ]
+            [ class "text-white relative z-20 hover:bg-gray-700 rounded-lg p-1" ]
+            [ text "desktop-icon" ]
         , button
             -- notifications nav item
             [ class "relative text-white z-20 hover:bg-gray-700 rounded-lg p-1" ]
             [ text "bell-outline-icon" ]
-
-        -- assume user is logged in for now
         , button
             -- whispers nav item
             [ class "text-white relative z-20 hover:bg-gray-700 rounded-lg p-1" ]
             [ text "annotation-outline-icon" ]
         , button
             -- get bits nav item
-            [ class "block relative z-20 text-white hover:bg-gray-700 rounded-lg p-1 md:hidden" ]
-            [ text "bits-icon", text "Get Bits" ]
-        , -- profile nav item
-          button
+            [ class "flex items-center space-x-1 justify-between bg-gray-600 rounded-md relative z-20 text-white py-1 px-2" ]
+            [ bits_icon "w-4 h-4", span [] [ text "Get Bits" ] ]
+        , button
+            -- profile nav item
             [ class "relative z-20 w-7 h-7" ]
             [ profileImage "rounded-full w-full h-full " ]
         ]
