@@ -27,6 +27,7 @@ navbar_view class_name _ =
     nav
         [ class class_name ]
         [ div
+            -- left nav items
             [ class "flex items-center justify-between text-white" ]
             [ span
                 [ class "inline-flex items-center space-x-4" ]
@@ -43,73 +44,58 @@ navbar_view class_name _ =
                     [ span [ class "block md:hidden" ] [ text "duplicate-icon" ]
                     , span [ class "hidden md:block" ] [ text "Browse" ]
                     ]
-                , a
-                    [ href "#", class "text-white hover:text-purple-600" ]
-                    [ span [ class "block md:hidden" ] [ text "briefcase-icon" ]
-                    , span [ class "hidden md:block" ] [ text "Esport" ]
-                    ]
-                , a
-                    [ href "#", class "text-white hover:text-purple-600" ]
-                    [ span [ class "block md:hidden" ] [ text "music-icon" ]
-                    , span [ class "hidden md:block" ] [ text "Music" ]
+                , button
+                    [ class "text-white p-1 hover:bg-gray-600 hover:rounded-md" ]
+                    [ span [ class "block md:hidden" ] [ dots_horizontal ]
+                    , span [ class "hidden md:block" ] [ dots_horizontal ]
                     ]
                 ]
             ]
+        , -- search bar
+          span
+            [ class "inline-flex items-center" ]
+            [ input [ class "px-4 py-2 w-64 bg-gray-500 rounded-l-md", placeholder "search" ] []
+            , button [ class "px-4 py-2 rounded-r-md text-white ml-1 bg-gray-600" ] [ text "search" ]
+            ]
+        , span
+            -- left navbar
+            []
+            [ span
+                -- prime loot nav item
+                [ class "relative text-white mr-1" ]
+                [ button
+                    [ class "relative z-20 hover:bg-gray-700 rounded-lg p-1" ]
+                    [ text "desktop-icon" ]
+                ]
+            , span
+                -- notifications nav item
+                [ class "relative text-white mr-1" ]
+                [ button
+                    [ class "relative z-20 hover:bg-gray-700 rounded-lg p-1" ]
+                    [ text "bell-outline-icon" ]
+                ]
+
+            -- assume user is logged in for now
+            , span
+                -- whispers nav item
+                [ class "relative text-white mr-1" ]
+                [ button
+                    [ class "relative z-20 hover:bg-gray-700 rounded-lg p-1" ]
+                    [ text "annotation-outline-icon" ]
+                ]
+            , span
+                -- get bits nav item
+                [ class "relative mr-2" ]
+                [ button
+                    [ class "block relative z-20 text-white hover:bg-gray-700 rounded-lg p-1 md:hidden" ]
+                    [ text "bits-icon", text "Get Bits" ]
+                ]
+            , span
+                -- profile nav item
+                [ class "relative text-white" ]
+                [ button
+                    [ class "relative z-20" ]
+                    [ text "profile-image" ]
+                ]
+            ]
         ]
-
-
-
--- [ div
---     [ class "flex items-center space-x-4" ]
---     [ button [] [ text "logo" ]
---     , navbar_text_link "Browse"
---     , span [] [ text "|" ]
---     , navbar_text_link "Esports"
---     , navbar_text_link "Message"
---     , div
---         [ class "relative" ]
---         [ button [ class "px-1 py-1 hover:bg-gray-700 rounded-md", onClick ToggleDotsButton ] [ dots_horizontal ]
---         , if model.dots_view then
---             div
---                 [ class "mt-10 absolute space-y-2 w-44 text-sm h-96 overflow-y-auto rounded-md bg-gray-800 border border-gray-900 px-3 py-4 shadow-xl text-white inset-0" ]
---                 [ div [ class "uppercase font-semibold text-gray-400" ] [ text "General" ]
---                 , div
---                     [ class "space-y-1 border-b pb-3 border-gray-400" ]
---                     [ dropdown_link "About"
---                     , dropdown_link "Advertisers"
---                     , dropdown_link "Blog"
---                     , dropdown_link "Developers"
---                     , dropdown_link "Download Apps"
---                     , dropdown_link "Gift Card"
---                     , dropdown_link "IGDB"
---                     , dropdown_link "Jobs"
---                     , dropdown_link "Loot Cave - Store"
---                     , dropdown_link "Partners"
---                     , dropdown_link "Press"
---                     , dropdown_link "Turbo"
---                     ]
---                 , dropdown_header "Help & Legal"
---                 , div
---                     [ class "space-y-1 " ]
---                     [ dropdown_link "Accessibility Statement"
---                     , dropdown_link "Ad Choices"
---                     , dropdown_link "Community Guidelines"
---                     , dropdown_link "Cookie Policy"
---                     , dropdown_link "Help"
---                     , dropdown_link "Privacy Policy"
---                     , dropdown_link "Security"
---                     , dropdown_link "Terms"
---                     ]
---                 ]
---           else
---             text ""
---         ]
---     ]
--- , div
---     [ class "flex items-center space-x-2" ]
---     [ button [] [ text "inbox" ]
---     , button [] [ text "Login" ]
---     , button [] [ text "Sign Up" ]
---     , button [] [ text "profile" ]
---     ]
--- ]

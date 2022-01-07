@@ -6,6 +6,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Navbar exposing (navbar_view)
+import StreamerNavbar exposing (streamers_left_navbar)
 import Types exposing (..)
 
 
@@ -17,11 +18,6 @@ main =
 init : Model
 init =
     { collapse_left_navbar = True, dots_view = True }
-
-
-css : String -> Html Msg
-css path =
-    node "link" [ rel "stylesheet", href path ] []
 
 
 update : Msg -> Model -> Model
@@ -41,26 +37,10 @@ view : Model -> Html Msg
 view model =
     div
         [ class "flex flex-col h-screen" ]
-        [ navbar_view "bg-gray-800 border-b border-black shadow-lg py-2 px-2" model
+        [ navbar_view "flex items-center justify-between border-b  border-black bg-gray-800  shadow-lg py-2 px-2" model
         , main_
             [ class "flex-grow bg-gray-900 text-white flex items-start overflow-auto" ]
-            [ if model.collapse_left_navbar then
-                aside
-                    [ class "col-span-1 bg-gray-800" ]
-                    [ closed_side_bar
-                    ]
-
-              else
-                aside
-                    [ class "col-span-3 bg-gray-800" ]
-                    [ open_side_bar
-                    ]
-            , if model.collapse_left_navbar then
-                section [ class "col-span-11 bg-gray-900" ] [ text "main area section" ]
-
-              else
-                section [ class "col-span-9 bg-gray-900" ] [ text "main area section" ]
-            ]
+            [ streamers_left_navbar ]
         ]
 
 
