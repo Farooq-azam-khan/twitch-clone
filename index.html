@@ -2,25 +2,28 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
 
 
-	<title>Twitch UI</title>
-  <link rel="stylesheet" href="tailwind.css" />
+  <title>Twitch UI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="build.css" />
   <script src="elm.js"></script>
 </head>
 
 <body>
-	<noscript>
-		You need to enable JavaScript to run this app.
-	</noscript>
-	<div id="root"></div>
-
+  <div id="elm-app"></div>
   <script>
-    const root = document.querySelector('#root')
-    if (root) {
+    const APP_NAME = 'twitch-clone'
+
+    const node = document.querySelector('#elm-app')
+    if (node) {
+      // Get token from local storage
+      const token_str = localStorage.getItem(`${APP_NAME}_token`)
       const app = Elm.Main.init({
-        node: root
+        node: node,
+        flags: null
       })
     }
   </script>
