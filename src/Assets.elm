@@ -28,28 +28,6 @@ profileImage class_name =
         []
 
 
-bits_icon : String -> Html msg
-bits_icon class_name =
-    Svg.svg
-        [ SvgAttr.class class_name
-        , SvgAttr.stroke "none"
-        , SvgAttr.fill "currentColor"
-        , SvgAttr.width "100%"
-        , SvgAttr.height "100%"
-        , SvgAttr.version "1.1"
-        , SvgAttr.viewBox "0 0 20 20"
-        , SvgAttr.x "0px"
-        , SvgAttr.y "0px"
-        ]
-        [ Svg.path
-            [ attribute "fillrule" "evenodd"
-            , attribute "cliprule" "evenodd"
-            , SvgAttr.d "M3 12l7-10 7 10-7 6-7-6zm2.678-.338L10 5.487l4.322 6.173-.85.728L10 11l-3.473 1.39-.849-.729z"
-            ]
-            []
-        ]
-
-
 offline_icon : String -> Html msg
 offline_icon class_name =
     Svg.svg
@@ -135,5 +113,45 @@ followingChannels =
       , imgUrl = sample_channel_image
       , isLive = False
       , views = "1M"
+      }
+    ]
+
+
+popularChannels : List Streamer
+popularChannels =
+    [ { username = "GMHikaru"
+      , id = "1"
+      , category = "Just Chatting"
+      , imgUrl = sample_channel_image
+      , views = "1M"
+      , isLive = True
+      }
+    , { username = "GMHikaru"
+      , category = "Just Chatting"
+      , imgUrl = sample_channel_image
+      , id = "2"
+      , views = "1M"
+      , isLive = True
+      }
+    , { username = "GMHikaru"
+      , category = "Just Chatting"
+      , imgUrl = sample_channel_image
+      , id = "3"
+      , views = "1M"
+      , isLive = True
+      }
+    , { username = "GMHikaru"
+      , category = "Just Chatting"
+      , imgUrl = sample_channel_image
+      , id = "4"
+      , views = "1M"
+      , isLive = True
+      }
+    , { username = "GMHikaru"
+      , category = "Just Chatting"
+      , imgUrl = sample_channel_image
+      , id = "5"
+      , views = "1M"
+      , isLive = True
       }
     ]

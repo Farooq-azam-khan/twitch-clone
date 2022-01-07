@@ -3,7 +3,7 @@ module Navbar exposing (navbar_view)
 import Assets exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Icons exposing (dots_horizontal)
+import Icons exposing (..)
 import Types exposing (..)
 
 
@@ -58,18 +58,18 @@ right_nav_items =
         [ button
             -- prime loot nav item
             [ class "text-white relative z-20 hover:bg-gray-700 rounded-lg p-1" ]
-            [ text "desktop-icon" ]
+            [ desktop_icon "w-6 h-6" ]
         , button
             -- notifications nav item
             [ class "relative text-white z-20 hover:bg-gray-700 rounded-lg p-1" ]
-            [ text "bell-outline-icon" ]
+            [ bell_icon "w-6 h-6" ]
         , button
             -- whispers nav item
             [ class "text-white relative z-20 hover:bg-gray-700 rounded-lg p-1" ]
-            [ text "annotation-outline-icon" ]
+            [ annotation_icon "w-6 h-6" ]
         , button
             -- get bits nav item
-            [ class "flex items-center space-x-1 justify-between bg-gray-600 rounded-md relative z-20 text-white py-1 px-2" ]
+            [ class "flex items-center space-x-1 justify-between bg-gray-600 hover:bg-gray-500 rounded-md relative z-20 text-white py-1 px-2" ]
             [ bits_icon "w-4 h-4", span [] [ text "Get Bits" ] ]
         , button
             -- profile nav item
