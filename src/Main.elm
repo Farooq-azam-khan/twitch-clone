@@ -17,7 +17,10 @@ main =
 
 init : Model
 init =
-    { collapse_left_navbar = True, dots_view = True }
+    { collapse_left_navbar = True
+    , dots_view = True
+    , logged_in = True
+    }
 
 
 update : Msg -> Model -> Model
@@ -40,7 +43,7 @@ view model =
         [ navbar_view "flex items-center justify-between border-b  border-black bg-gray-800  shadow-lg py-2 px-2" model
         , main_
             [ class "flex-grow bg-gray-900 text-white flex items-start overflow-auto" ]
-            [ streamers_left_navbar ]
+            [ streamers_left_navbar "h-full w-1/12 md:w-1/5 bg-blue-900 flex flex-col items-center p-0 justify-center" model ]
         ]
 
 

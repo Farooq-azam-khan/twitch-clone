@@ -1,5 +1,6 @@
 module Navbar exposing (navbar_view)
 
+import Assets exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
@@ -31,7 +32,7 @@ navbar_view class_name _ =
             [ class "flex items-center justify-between text-white" ]
             [ span
                 [ class "inline-flex items-center space-x-4" ]
-                [ span [] [ text "Twitch Logo" ]
+                [ span [] [ twitchLogo ]
                 , a
                     -- following nav link item
                     [ href "#", class "text-white hover:text-purple-600" ]
