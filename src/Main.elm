@@ -8,11 +8,11 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Navbar exposing (navbar_view)
 import Routes exposing (..)
+import StreamComponent exposing (..)
 import StreamerNavbar exposing (streamers_left_navbar)
 import Types exposing (..)
 import Updates exposing (..)
 import Url
-import Url.Parser exposing (parse)
 
 
 main : Program () Model Msg
@@ -61,8 +61,9 @@ view model =
                         div [] [ text "home route" ]
 
                     StreamR streamer_id ->
-                        div [] [ text <| "watching:" ++ streamer_id ]
+                        streamComponent "flex-grow w-11/12 md:w-3/5 flex h-full" streamer_id model
 
+                    -- div [] [ text <| "watching:" ++ streamer_id ]
                     ErrorR ->
                         div [] [ text "error parsing url" ]
                 ]

@@ -6,7 +6,6 @@ import Browser.Navigation as Nav
 import Routes exposing (..)
 import Types exposing (..)
 import Url
-import Url.Parser
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
