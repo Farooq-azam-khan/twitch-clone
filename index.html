@@ -19,8 +19,6 @@
 
     const node = document.querySelector('#elm-app')
     if (node) {
-      // Get token from local storage
-      const token_str = localStorage.getItem(`${APP_NAME}_token`)
       const app = Elm.Main.init({
         node: node,
         flags: null

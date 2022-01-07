@@ -3,15 +3,6 @@ import React from "react";
 const sampleChannelImage =
   "https://static-cdn.jtvnw.net/jtv_user_pictures/cd921fcd-53fc-4b1d-be23-0787bc36b756-profile_image-70x70.png";
 
-const sampleChannelImage2 =
-  "https://static-cdn.jtvnw.net/jtv_user_pictures/nymn-profile_image-d52821b50793580f-70x70.jpeg";
-
-const sampleChannelImage3 =
-  "https://static-cdn.jtvnw.net/jtv_user_pictures/xqcow-profile_image-9298dca608632101-70x70.jpeg";
-
-const sampleChannelImage4 =
-  "https://static-cdn.jtvnw.net/jtv_user_pictures/1fc90a02-f40a-40b1-9a77-a4031d9d3ec0-profile_image-150x150.png";
-
 const Online = ({ className }) => {
   return (
     <svg
