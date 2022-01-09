@@ -99,3 +99,89 @@ desktop_icon class_name =
             ]
             []
         ]
+
+arrow_left_icon : String -> Html msg 
+arrow_left_icon class_name = 
+     Svg.svg
+        [ SvgAttr.class class_name
+        , SvgAttr.fill "none"
+        , SvgAttr.stroke "currentColor"
+        , SvgAttr.viewBox "0 0 24 24"
+        ]
+        [ Svg.path
+            [ SvgAttr.strokeLinecap "round"
+            , SvgAttr.strokeLinejoin "round"
+            , SvgAttr.strokeWidth "2"
+            , SvgAttr.d "M10 19l-7-7m0 0l7-7m-7 7h18"
+            ]
+            []
+        ]
+    
+arrow_right_icon : String -> Html msg 
+arrow_right_icon class_name = 
+    Svg.svg
+        [ SvgAttr.class class_name
+        , SvgAttr.fill "none"
+        , SvgAttr.stroke "currentColor"
+        , SvgAttr.viewBox "0 0 24 24"
+        ]
+        [ Svg.path
+            [ SvgAttr.strokeLinecap "round"
+            , SvgAttr.strokeLinejoin "round"
+            , SvgAttr.strokeWidth "2"
+            , SvgAttr.d "M14 5l7 7m0 0l-7 7m7-7H3"
+            ]
+            []
+        ]
+
+heart_icon : String -> Html msg 
+heart_icon class_name = 
+   Svg.svg
+        [ SvgAttr.class class_name
+        , SvgAttr.fill "none"
+        , SvgAttr.stroke "currentColor"
+        , SvgAttr.viewBox "0 0 24 24"
+        ]
+        [ Svg.path
+            [ SvgAttr.strokeLinecap "round"
+            , SvgAttr.strokeLinejoin "round"
+            , SvgAttr.strokeWidth "2"
+            , SvgAttr.d "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            ]
+            []
+        ]
+    
+video_camera_icon : String -> Html msg 
+video_camera_icon class_name = 
+        Svg.svg
+        [ SvgAttr.class class_name
+        , SvgAttr.fill "none"
+        , SvgAttr.stroke "currentColor"
+        , SvgAttr.viewBox "0 0 24 24"
+        ]
+        [ Svg.path
+            [ SvgAttr.strokeLinecap "round"
+            , SvgAttr.strokeLinejoin "round"
+            , SvgAttr.strokeWidth "2"
+            , SvgAttr.d "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+            ]
+            []
+        ]
+
+users_icon : String -> Html msg 
+users_icon class_name = 
+    Svg.svg
+        [ SvgAttr.class class_name
+        , SvgAttr.fill "none"
+        , SvgAttr.stroke "currentColor"
+        , SvgAttr.viewBox "0 0 24 24"
+        ]
+        [ Svg.path
+            [ SvgAttr.strokeLinecap "round"
+            , SvgAttr.strokeLinejoin "round"
+            , SvgAttr.strokeWidth "2"
+            , SvgAttr.d "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+            ]
+            []
+        ]
+    

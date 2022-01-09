@@ -22,3 +22,4 @@ onUrlChange url =
 type Msg
     = LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
+    | ToggleLeftNavbar

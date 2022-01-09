@@ -21,3 +21,6 @@ update msg model =
 
         UrlChanged url ->
             ( { model | url = url, route = parse_route_url url }, Cmd.none )
+        
+        ToggleLeftNavbar -> 
+            ({model | collapse_left_navbar = not model.collapse_left_navbar}, Cmd.none)
