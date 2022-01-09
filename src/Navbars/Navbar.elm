@@ -1,4 +1,4 @@
-module Navbar exposing (navbar_view)
+module Navbars.Navbar exposing (navbar_view)
 
 import Assets exposing (..)
 import Html exposing (..)
@@ -43,8 +43,8 @@ left_nav_items =
                 ]
             , button
                 [ class "text-white p-1 hover:bg-gray-600 hover:rounded-md" ]
-                [ span [ class "block md:hidden" ] [ dots_horizontal ]
-                , span [ class "hidden md:block" ] [ dots_horizontal ]
+                [ span [ class "block md:hidden" ] [ dots_vertical "w-6 h-6" ]
+                , span [ class "hidden md:block" ] [ dots_vertical "w-6 h-6" ]
                 ]
             ]
         ]

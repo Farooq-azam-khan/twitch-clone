@@ -1,4 +1,4 @@
-module StreamerNavbar exposing (..)
+module Navbars.StreamerNavbar exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

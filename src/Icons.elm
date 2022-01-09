@@ -5,6 +5,23 @@ import Html.Attributes exposing (..)
 import Svg as Svg
 import Svg.Attributes as SvgAttr
 
+dots_vertical : String -> Html msg 
+dots_vertical class_name = 
+    Svg.svg
+        [ SvgAttr.class class_name
+        , SvgAttr.fill "none"
+        , SvgAttr.stroke "currentColor"
+        , SvgAttr.viewBox "0 0 24 24"
+        ]
+        [ Svg.path
+            [ SvgAttr.strokeLinecap "round"
+            , SvgAttr.strokeLinejoin "round"
+            , SvgAttr.strokeWidth "2"
+            , SvgAttr.d "M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+            ]
+            []
+        ]
+    
 
 dots_horizontal : Svg.Svg msg
 dots_horizontal =

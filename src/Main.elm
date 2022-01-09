@@ -6,10 +6,10 @@ import Browser.Navigation as Nav
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Navbar exposing (navbar_view)
+import Navbars.Navbar exposing (navbar_view)
 import Routes exposing (..)
 import StreamComponent exposing (..)
-import StreamerNavbar exposing (streamers_left_navbar)
+import Navbars.StreamerNavbar exposing (streamers_left_navbar)
 import Types exposing (..)
 import Updates exposing (..)
 import Url
