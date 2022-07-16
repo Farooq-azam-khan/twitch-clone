@@ -8,23 +8,13 @@
   <title>Twitch UI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="build.css" />
   <link rel="stylesheet" href="styles/scrollbar.css" />
-  <script src="elm.js"></script>
 </head>
 
 <body>
-  <div id="elm-app"></div>
-  <script>
-    const APP_NAME = 'twitch-clone'
-
-    const node = document.querySelector('#elm-app')
-    if (node) {
-      const app = Elm.Main.init({
-        node: node,
-        flags: null
-      })
-    }
+  <div id="app"></div>
+  <noscript> You need to enable JavaScript to run this pap. </noscript> 
+  <script type="module" src="/index.ts">
   </script>
 </body>
 

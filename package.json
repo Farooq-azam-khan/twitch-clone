@@ -1,29 +1,32 @@
 {
   "name": "twitch-ui",
-  "version": "1.0.0",
+  "version": "0.1",
   "description": "",
   "keywords": [],
   "main": "src/Main.elm",
-  "dependencies": {},
   "devDependencies": {
-    "concurrently": "^6.5.1",
     "elm": "^0.19.1-5",
     "elm-format": "^0.8.5",
     "elm-live": "^4.0.2",
-    "tailwindcss": "^3.0.7"
+    "tailwindcss": "^3.1.6"
   },
   "scripts": {
-    "dev": "concurrently npm:dev:*",
-    "dev:elm": "elm-live -p 3000 src/Main.elm --pushstate -- --debug --output=elm.js",
-    "dev:tailwind": "tailwindcss -i tailwind.css -o build.css --watch",
-    "build:elm": "elm make src/Main.elm --output=build/elm.js --optimize",
-    "build:tailwind": "tailwindcss -i tailwind.css -o build/build.css --minify",
-    "build": "mkdir build & cp index.html build & npm run build:tailwind & npm run build:elm"
+    "start": "vite --host 0.0.0.0",
+    "build": "vite build"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "dependencies": {
+    "autoprefixer": "^10.4.7",
+    "elm-review": "^2.7.3",
+    "elm-tooling": "^1.8.0",
+    "postcss": "^8.4.14",
+    "typescript": "^4.7.4",
+    "vite": "^2.9.14",
+    "vite-plugin-elm": "^2.6.1"
+  }
 }
