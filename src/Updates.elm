@@ -21,6 +21,12 @@ update msg model =
 
         UrlChanged url ->
             ( { model | url = url, route = parse_route_url url }, Cmd.none )
-        
-        ToggleLeftNavbar -> 
-            ({model | collapse_left_navbar = not model.collapse_left_navbar}, Cmd.none)
+
+        ToggleLeftNavbar ->
+            ( { model | collapse_left_navbar = not model.collapse_left_navbar }, Cmd.none )
+
+        ClickRightCarouselBtn ->
+            ( { model | carousel = click_next_element model.carousel }, Cmd.none )
+
+        ClickLeftCarouselBtn ->
+            ( { model | carousel = click_prev_element model.carousel }, Cmd.none )
