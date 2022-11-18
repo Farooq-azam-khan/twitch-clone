@@ -48,7 +48,7 @@ init _ url key =
 
 view : Model -> Browser.Document Msg
 view model =
-    { title = "App"
+    { title = "Twitch UI Clone App"
     , body =
         [ div
             [ class "flex flex-col h-screen" ]
